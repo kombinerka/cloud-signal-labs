@@ -3,25 +3,38 @@
 Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps and FinOps,
 explained in practice.
 
-Every folder belongs to one video, has its own README, and can be used on its own. Where infrastructure code comes up,
+Every folder belongs to a video, has its own README, and can be used on its own. Explainers get a bigger folder
+that follows the video step by step; Shorts get a small one for the single idea. Where infrastructure code comes up,
 you get **both Terraform and Bicep**. Where a pipeline comes up, you get **GitHub Actions, Azure Pipelines and GitLab
 CI**. Use the one your team runs.
 
-## Folders
+## Explainers (5-15 min): bigger folders, step by step
 
-| Folder | Video | Terraform | Bicep | Pipelines |
+| Folder | Video | What you get |
+|---|---|---|
+| [azure-takeover](azure-takeover/) | You Inherited a Messy Azure Setup. Don't Start With Terraform. | discovery queries, "what is managed" comparison, safety basics, the Terraform export loop **and** the Bicep deployment-stack option, pipelines on all three platforms |
+| [landing-zone](landing-zone/) | Azure Landing Zones: The Foundation Before the Workload | management groups, subscription placement, inherited policies and a hub network, in Terraform and Bicep |
+| [oidc-deploy](oidc-deploy/) | Deploy to Azure Without a Stored Secret (and the 2-minute version) | identity + federated credential in Terraform, Bicep or CLI; deploy pipelines for GitHub, Azure DevOps, GitLab; troubleshooting table |
+| [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
+
+## Shorts (under a minute): one idea, one small folder
+
+| Folder | Short | Terraform | Bicep | Pipelines / other |
 |---|---|:-:|:-:|---|
-| [azure-takeover](azure-takeover/) | You Inherited a Messy Azure Setup. Don't Start With Terraform. | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
-| [oidc-deploy](oidc-deploy/) | Deploy to Azure Without a Stored Secret | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 | [pin-dependencies](pin-dependencies/) | Pin What Your Pipeline Runs | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 | [drift-detection](drift-detection/) | What Is Infrastructure Drift? | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 | [import-existing](import-existing/) | Built in the Azure Portal? Import It, Don't Rebuild It | ✓ | ✓ | |
-| [tag-inheritance](tag-inheritance/) | Tagged the Resource Group? Your Azure Costs Are Still Untagged | ✓ | ✓ | |
-| [deployment-slots](deployment-slots/) | Blue-Green vs Canary Deployments | ✓ | ✓ | |
-| [resource-locks](resource-locks/) | Why Azure Won't Let Even the Owner Delete This | ✓ | ✓ | |
-| [vm-deallocate](vm-deallocate/) | Your Azure VM Is Off. Why Are You Still Paying? | ✓ | ✓ | |
+| [tag-inheritance](tag-inheritance/) | Tagged the Resource Group? Your Costs Are Still Untagged | ✓ | ✓ | CLI |
+| [deployment-slots](deployment-slots/) | Blue-Green vs Canary Deployments | ✓ | ✓ | release scripts |
+| [availability-zones](availability-zones/) | One Azure Datacenter Fails. Does Your App? | ✓ | ✓ | |
+| [hub-spoke-peering](hub-spoke-peering/) | Why A Can't Reach C in Azure (Peering Isn't Transitive) | ✓ | ✓ | |
+| [archive-tier](archive-tier/) | Your Cheapest Backup Might Take 15 Hours to Restore | ✓ | ✓ | rehydrate script |
+| [resource-locks](resource-locks/) | Why Azure Won't Let Even the Owner Delete This | ✓ | ✓ | CLI |
+| [resource-group-lifecycle](resource-group-lifecycle/) | Delete One Azure Resource Group, Lose Everything In It | ✓ | ✓ | check script |
+| [vm-deallocate](vm-deallocate/) | Your Azure VM Is Off. Why Are You Still Paying? | ✓ | ✓ | find script |
 | [leaked-secret](leaked-secret/) | Deleted the API Key From GitHub? It's Still There | | | push protection on all three |
-| [retry-backoff](retry-backoff/) | Why Instant Retries Can Take Your Service Down | | | |
+| [retry-backoff](retry-backoff/) | Why Instant Retries Can Take Your Service Down | | | Python |
+| [oidc-deploy](oidc-deploy/) | GitHub Actions to Azure with OIDC: Trust Is Not Permission | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 
 ## Before you run anything
 

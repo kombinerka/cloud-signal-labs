@@ -1,0 +1,36 @@
+# Build once, test fast first, promote the same artifact dev -> staging -> production.
+# Production waits for the approvals and checks configured on the "production" environment.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  version: 1.0.$(Build.BuildId)+$(Build.SourceVersion)
+
+stages:
+  - stage: build
+    jobs:
+      - job: build
+        steps:
+          - checkout: self
+          - script: python3 -m unittest discover -s tests -t . -p 'test_unit.py'
+            workingDirectory: cicd-pipeline
+            displayName: Unit tests (fast, first)
+          - script: VERSION=$(version) ./build.sh
+            workingDirectory: cicd-pipeline
+            displayName: Build the artifact once
+          - script: ARTIFACT=dist/shop-$(version).tar.gz python3 -m unittest discover -s tests -t . -p 'test_integration.py'
+            workingDirectory: cicd-pipeline
+            displayName: Integration tests against the artifact
+          - publish: cicd-pipeline/dist
+            artifact: shop
+
+  - template: deploy-stage.yml
+    parameters: { environment: dev, dependsOn: build }
+  - template: deploy-stage.yml
+    parameters: { environment: staging, dependsOn: deploy_dev }
+  - template: deploy-stage.yml
+    parameters: { environment: production, dependsOn: deploy_staging }

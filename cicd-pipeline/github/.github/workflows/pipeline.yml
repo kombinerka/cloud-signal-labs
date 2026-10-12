@@ -1,0 +1,60 @@
+# Build once, test fast first, promote the same artifact dev -> staging -> production.
+# Production waits for the reviewers configured on the "production" environment.
+name: pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-pipeline
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Unit tests (fast, first)
+        run: python -m unittest discover -s tests -t . -p 'test_unit.py'
+      - id: v
+        run: echo "version=1.0.${{ github.run_number }}+${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Build the artifact once
+        run: VERSION=${{ steps.v.outputs.version }} ./build.sh
+      - name: Integration tests against the artifact
+        run: ARTIFACT=dist/shop-${{ steps.v.outputs.version }}.tar.gz python -m unittest discover -s tests -t . -p 'test_integration.py'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: shop
+          path: cicd-pipeline/dist/
+
+  deploy-dev:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev
+      version: ${{ needs.build.outputs.version }}
+
+  deploy-staging:
+    needs: [build, deploy-dev]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: staging
+      version: ${{ needs.build.outputs.version }}
+
+  deploy-production:
+    needs: [build, deploy-staging]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: production # add required reviewers to this environment: that is the gate
+      version: ${{ needs.build.outputs.version }}

@@ -1,0 +1,25 @@
+# One deploy stage: download the artifact built once and deploy it to one environment.
+parameters:
+  - name: environment
+    type: string
+  - name: dependsOn
+    type: string
+
+stages:
+  - stage: deploy_${{ parameters.environment }}
+    dependsOn: ${{ parameters.dependsOn }}
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: deploy
+        environment: ${{ parameters.environment }} # approvals and checks live on the environment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - download: current
+                  artifact: shop
+                - script: |
+                    mkdir -p dist && cp "$(Pipeline.Workspace)/shop/"* dist/
+                    ./deploy.sh ${{ parameters.environment }} dist/shop-$(version).tar.gz
+                  workingDirectory: cicd-pipeline

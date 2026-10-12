@@ -1,0 +1,53 @@
+# Build once, test fast first, promote the same artifact dev -> staging -> production.
+# Production is a manual job on a protected environment (Settings > CI/CD > Protected environments: approvals).
+stages: [build, test, deploy]
+
+default:
+  image: python:3.13-slim # pin by digest in real use, see ../../pin-dependencies
+
+variables:
+  VERSION: 1.0.$CI_PIPELINE_IID+$CI_COMMIT_SHORT_SHA
+
+unit:
+  stage: build
+  script:
+    - cd cicd-pipeline && python -m unittest discover -s tests -t . -p 'test_unit.py'
+
+build:
+  stage: build
+  needs: [unit]
+  script:
+    - cd cicd-pipeline && ./build.sh
+  artifacts:
+    paths: [cicd-pipeline/dist/]
+
+integration:
+  stage: test
+  needs: [build]
+  script:
+    - cd cicd-pipeline && ARTIFACT="dist/shop-$VERSION.tar.gz" python -m unittest discover -s tests -t . -p 'test_integration.py'
+
+.deploy:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - cd cicd-pipeline && ./deploy.sh "$CI_ENVIRONMENT_NAME" "dist/shop-$VERSION.tar.gz"
+
+deploy-dev:
+  extends: .deploy
+  needs: [build, integration]
+  environment: dev
+
+deploy-staging:
+  extends: .deploy
+  needs: [build, deploy-dev]
+  environment: staging
+
+deploy-production:
+  extends: .deploy
+  needs: [build, deploy-staging]
+  environment: production
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual

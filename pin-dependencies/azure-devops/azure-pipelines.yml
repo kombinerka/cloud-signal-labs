@@ -1,0 +1,24 @@
+# Azure Pipelines tasks can't be pinned to a commit. Pin the full major.minor.patch version instead,
+# so a new minor release doesn't run automatically. The version below is an example: copy the exact
+# "Version:" line from the top of the task's log in one of your own runs.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+# Job container pinned by digest. Get it with: docker buildx imagetools inspect <image>:<tag>
+container: mcr.microsoft.com/azure-cli@sha256:0000000000000000000000000000000000000000000000000000000000000000
+
+steps:
+  - checkout: self
+
+  # Pinned to the full version (AzureCLI@2 alone would take every new 2.x release).
+  - task: AzureCLI@2.281.2
+    inputs:
+      azureSubscription: my-wif-service-connection
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: az account show
+

@@ -1,0 +1,19 @@
+# Includes from another project use the full 40-character commit SHA as ref, never a branch or a tag.
+# Find it with: git ls-remote https://gitlab.com/<group>/<project> refs/tags/<tag>
+include:
+  - project: my-group/ci-templates
+    ref: 0123456789abcdef0123456789abcdef01234567 # was: v2.4.0
+    file: /templates/terraform.yml
+
+  # CI/CD components: pin an exact released version (not ~latest, not a major version like @1).
+  # For the strongest guarantee you can also use the full commit SHA after the @.
+  - component: $CI_SERVER_FQDN/my-group/components/secret-scan@1.4.2
+
+stages: [validate]
+
+validate:
+  stage: validate
+  # Image pinned by digest. Get it with: docker buildx imagetools inspect <image>:<tag>
+  image: mcr.microsoft.com/azure-cli@sha256:0000000000000000000000000000000000000000000000000000000000000000
+  script:
+    - az version

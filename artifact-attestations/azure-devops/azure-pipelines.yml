@@ -1,0 +1,56 @@
+# Azure DevOps has no built-in artifact attestations. Sign with cosign using a key held in Azure Key Vault
+# (the private key never leaves the vault), and verify before deploying.
+# The service connection's identity needs "Key Vault Crypto User" on the key (sign and verify).
+# Key: EC P-256 in a vault named kv-signing, key name "artifact-signing" (an RBAC-enabled vault).
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  signingKey: azurekms://kv-signing.vault.azure.net/artifact-signing
+
+stages:
+  - stage: build
+    jobs:
+      - job: build
+        steps:
+          - script: |
+              mkdir -p dist && echo "build of $(Build.SourceVersion)" > dist/app.txt
+              tar -czf dist/app.tar.gz -C dist app.txt
+            displayName: Build
+          - task: AzureCLI@2 # pin the full version you run, see ../../pin-dependencies
+            displayName: Sign with a Key Vault key
+            inputs:
+              azureSubscription: sc-signing-wif
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                curl -sSL -o /tmp/cosign https://github.com/sigstore/cosign/releases/download/v3.1.3/cosign-linux-amd64
+                chmod +x /tmp/cosign
+                AZURE_AUTH_METHOD=cli /tmp/cosign sign-blob --yes --key "$(signingKey)" \
+                  --bundle dist/app.tar.gz.bundle dist/app.tar.gz
+          - publish: dist
+            artifact: app
+
+  - stage: deploy
+    dependsOn: build
+    jobs:
+      - job: verify_and_deploy
+        steps:
+          - download: current
+            artifact: app
+          - task: AzureCLI@2
+            displayName: Verify signature (the gate)
+            inputs:
+              azureSubscription: sc-signing-wif
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                curl -sSL -o /tmp/cosign https://github.com/sigstore/cosign/releases/download/v3.1.3/cosign-linux-amd64
+                chmod +x /tmp/cosign
+                AZURE_AUTH_METHOD=cli /tmp/cosign verify-blob --key "$(signingKey)" \
+                  --bundle "$(Pipeline.Workspace)/app/app.tar.gz.bundle" "$(Pipeline.Workspace)/app/app.tar.gz"
+          - script: echo "Verified. Deploy here."

@@ -1,0 +1,55 @@
+# Build an artifact, attest its provenance, and VERIFY it before it is used.
+# The attestation is only half of the control: the gate is the verify step, which checks the digest, the signature,
+# the source repository, the workflow that built it and the ref.
+name: build-attest-verify
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Sigstore signing certificate
+      attestations: write # store the attestation
+      artifact-metadata: write # storage record for the artifact
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build
+        run: |
+          mkdir -p dist
+          echo "build of ${GITHUB_SHA}" > dist/app.txt
+          tar -czf dist/app.tar.gz -C dist app.txt
+      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: dist/app.tar.gz
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: app
+          path: dist/app.tar.gz
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      attestations: read
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: app
+      - name: Verify provenance (the gate)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh attestation verify app.tar.gz \
+            --repo "${GITHUB_REPOSITORY}" \
+            --signer-workflow "${GITHUB_REPOSITORY}/.github/workflows/build-attest-verify.yml" \
+            --source-ref refs/heads/main \
+            --deny-self-hosted-runners
+      - run: echo "Verified. Deploy app.tar.gz here."

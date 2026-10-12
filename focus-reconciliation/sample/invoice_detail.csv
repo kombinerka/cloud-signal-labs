@@ -1,0 +1,6 @@
+InvoiceIssuerName,InvoiceId,InvoiceDetailId,BillingCurrency,BillingPeriodStart,BillingPeriodEnd,ChargeCategory,InvoiceIssueStatus,BilledCost
+Microsoft,INV-2026-09,1,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Usage,Issued,1550.13
+Microsoft,INV-2026-09,2,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Purchase,Issued,500.00
+Microsoft,INV-2026-09,3,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Tax,Issued,389.80
+Microsoft,INV-2026-08,1,EUR,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Usage,Issued,1504.75
+Microsoft,INV-2026-08,2,EUR,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Credit,Issued,-8.00

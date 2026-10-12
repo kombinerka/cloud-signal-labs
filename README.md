@@ -1,7 +1,7 @@
 # Cloud Signal Labs
 
-Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps and FinOps,
-explained in practice.
+Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps, FinOps and
+Kubernetes, explained in practice.
 
 Every folder belongs to a video, has its own README, and can be used on its own. Explainers get a bigger folder
 that follows the video step by step; Shorts get a small one for the single idea. Where infrastructure code comes up,
@@ -15,6 +15,7 @@ CI**. Use the one your team runs.
 | [azure-takeover](azure-takeover/) | You Inherited a Messy Azure Setup. Don't Start With Terraform. | discovery queries, "what is managed" comparison, safety basics, the Terraform export loop **and** the Bicep deployment-stack option, pipelines on all three platforms |
 | [landing-zone](landing-zone/) | Azure Landing Zones: The Foundation Before the Workload | management groups, subscription placement, inherited policies and a hub network, in Terraform and Bicep |
 | [oidc-deploy](oidc-deploy/) | Deploy to Azure Without a Stored Secret (and the 2-minute version) | identity + federated credential in Terraform, Bicep or CLI; deploy pipelines for GitHub, Azure DevOps, GitLab; troubleshooting table |
+| [managed-identity](managed-identity/) | Azure Managed Identity Explained: How It Works & Why Access Is Denied | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
 | [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
 
 ## Shorts (under a minute): one idea, one small folder
@@ -34,6 +35,10 @@ CI**. Use the one your team runs.
 | [vm-deallocate](vm-deallocate/) | Your Azure VM Is Off. Why Are You Still Paying? | ✓ | ✓ | find script |
 | [leaked-secret](leaked-secret/) | Deleted the API Key From GitHub? It's Still There | | | push protection on all three |
 | [retry-backoff](retry-backoff/) | Why Instant Retries Can Take Your Service Down | | | Python |
+| [artifact-attestations](artifact-attestations/) | What GitHub Artifact Attestations Actually Prove | | | GitHub attest + verify · GitLab cosign · Azure DevOps cosign + Key Vault |
+| [appgw-502-probe](appgw-502-probe/) | The App Works. Why Does Application Gateway Return 502? | ✓ | ✓ | local fixture, diagnose script |
+| [topology-spread](topology-spread/) | Kubernetes Pod Pending: When Two Spread Rules Disagree | | | Kubernetes YAML, kind repro |
+| [focus-reconciliation](focus-reconciliation/) | Your Cloud Usage Table Is Not Your Invoice | | | Python, SQL, sample FOCUS data |
 | [oidc-deploy](oidc-deploy/) | GitHub Actions to Azure with OIDC: Trust Is Not Permission | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 
 ## Before you run anything

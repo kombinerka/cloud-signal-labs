@@ -1,0 +1,8 @@
+InvoiceIssuerName,InvoiceId,BillingCurrency,BillingPeriodStart,BillingPeriodEnd,ChargeCategory,ServiceName,BilledCost
+Microsoft,INV-2026-09,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Usage,Virtual Machines,1240.123456
+Microsoft,INV-2026-09,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Usage,Storage,310.004321
+Microsoft,INV-2026-09,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Purchase,Reservations,500.000000
+Microsoft,INV-2026-09,EUR,2026-09-01T00:00:00Z,2026-10-01T00:00:00Z,Tax,,389.80
+Microsoft,INV-2026-08,EUR,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Usage,Virtual Machines,1199.50
+Microsoft,INV-2026-08,EUR,2026-08-01T00:00:00Z,2026-09-01T00:00:00Z,Usage,Storage,305.25
+Microsoft,,EUR,2026-10-01T00:00:00Z,2026-11-01T00:00:00Z,Usage,Virtual Machines,402.10

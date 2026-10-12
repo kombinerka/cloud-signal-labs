@@ -1,0 +1,30 @@
+# GitLab: sign the artifact keyless with Sigstore (the job's ID token is the identity), then verify before deploying.
+# Verification pins the identity: this project, this pipeline file, the main branch, issued by gitlab.com.
+stages: [build, deploy]
+
+build:
+  stage: build
+  image: alpine:3.22 # pin by digest in real use, see ../../pin-dependencies
+  id_tokens:
+    SIGSTORE_ID_TOKEN:
+      aud: sigstore
+  script:
+    - apk add --no-cache cosign
+    - mkdir -p dist && echo "build of $CI_COMMIT_SHA" > dist/app.txt && tar -czf dist/app.tar.gz -C dist app.txt
+    - cosign sign-blob --yes --bundle dist/app.tar.gz.bundle dist/app.tar.gz
+  artifacts:
+    paths: [dist/]
+
+deploy:
+  stage: deploy
+  image: alpine:3.22
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  script:
+    - apk add --no-cache cosign
+    - >
+      cosign verify-blob dist/app.tar.gz
+      --bundle dist/app.tar.gz.bundle
+      --certificate-identity "${CI_SERVER_URL}/${CI_PROJECT_PATH}//${CI_CONFIG_PATH}@refs/heads/main"
+      --certificate-oidc-issuer "${CI_SERVER_URL}"
+    - echo "Verified. Deploy dist/app.tar.gz here."

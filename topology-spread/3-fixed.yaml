@@ -1,0 +1,21 @@
+# Same Pod, node rule turned into a preference (ScheduleAnyway). Only the zone rule is hard now, so node 3 passes
+# (assuming the other scheduling checks pass). Trade-off: node spreading is no longer guaranteed.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-6
+  labels: { app: web }
+spec:
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector: { matchLabels: { app: web } }
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      nodeTaintsPolicy: Honor # skip the tainted kind control-plane node, so the domains are the 3 workers
+      whenUnsatisfiable: ScheduleAnyway # was DoNotSchedule
+      labelSelector: { matchLabels: { app: web } }
+  containers:
+    - name: web
+      image: registry.k8s.io/pause:3.10

@@ -1,0 +1,15 @@
+# Three worker nodes in two zones, like the video: zone A = node 1 + node 2, zone B = node 3.
+#   kind create cluster --name spread --config kind-cluster.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker # node 1 -> spread-worker
+    labels:
+      topology.kubernetes.io/zone: zone-a
+  - role: worker # node 2 -> spread-worker2
+    labels:
+      topology.kubernetes.io/zone: zone-a
+  - role: worker # node 3 -> spread-worker3
+    labels:
+      topology.kubernetes.io/zone: zone-b

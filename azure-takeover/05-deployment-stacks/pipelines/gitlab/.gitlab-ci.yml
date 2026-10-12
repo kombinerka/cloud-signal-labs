@@ -1,0 +1,29 @@
+# PSRule in merge requests and on main, stack deployment on main.
+# CI/CD variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, BREAK_GLASS_GROUP_ID. Azure federated credential:
+# issuer/audience https://gitlab.com, subject project_path:<group>/<project>:ref_type:branch:ref:main
+stages: [test, deploy]
+
+psrule:
+  stage: test
+  image: mcr.microsoft.com/azure-powershell:latest # has pwsh and az; pin by digest in real use
+  script:
+    - az bicep install
+    - export PATH="$HOME/.azure/bin:$PATH"
+    - pwsh -c 'Install-Module PSRule.Rules.Azure -Scope CurrentUser -Force; Assert-PSRule -InputPath azure-takeover/05-deployment-stacks/ -Module PSRule.Rules.Azure -ErrorAction Stop'
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy:
+  stage: deploy
+  image: mcr.microsoft.com/azure-cli:latest # pin by digest in real use
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  variables:
+    RG: rg-app-dev
+  script:
+    - az login --service-principal -u "$AZURE_CLIENT_ID" -t "$AZURE_TENANT_ID" --federated-token "$GITLAB_OIDC_TOKEN"
+    - ./azure-takeover/05-deployment-stacks/deploy-stack.sh

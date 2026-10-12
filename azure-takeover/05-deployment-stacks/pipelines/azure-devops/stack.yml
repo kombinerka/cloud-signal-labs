@@ -1,0 +1,41 @@
+# PSRule on every run, stack deployment on main. ps-rule-assert comes from the "PSRule" Marketplace extension
+# (publisher: bewhite). Pin the full task versions you run, see ../../../../pin-dependencies.
+trigger:
+  branches:
+    include: [main]
+pr:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: test
+    jobs:
+      - job: psrule
+        steps:
+          - task: ps-rule-assert@2
+            inputs:
+              modules: PSRule.Rules.Azure
+              inputPath: azure-takeover/05-deployment-stacks/
+
+  - stage: deploy
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: stack
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  inputs:
+                    azureSubscription: sc-app-dev-wif # workload identity federation, no secret
+                    scriptType: bash
+                    scriptLocation: scriptPath
+                    scriptPath: azure-takeover/05-deployment-stacks/deploy-stack.sh
+                  env:
+                    RG: rg-app-dev
+                    BREAK_GLASS_GROUP_ID: $(breakGlassGroupId)

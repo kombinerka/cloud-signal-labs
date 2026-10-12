@@ -1,0 +1,15 @@
+# GitLab CI to Azure without a secret. The federated credential on the Azure identity needs:
+#   issuer:   https://gitlab.com            (your GitLab URL if self-managed)
+#   audience: https://gitlab.com            (must equal aud below)
+#   subject:  project_path:<group>/<project>:ref_type:branch:ref:main
+# CI/CD variables: AZURE_CLIENT_ID, AZURE_TENANT_ID (IDs, not secrets).
+deploy:
+  image: mcr.microsoft.com/azure-cli:latest # pin by digest in real use, see ../../pin-dependencies
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  script:
+    - az login --service-principal -u "$AZURE_CLIENT_ID" -t "$AZURE_TENANT_ID" --federated-token "$GITLAB_OIDC_TOKEN"
+    - az account show

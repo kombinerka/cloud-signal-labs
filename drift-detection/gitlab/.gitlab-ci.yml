@@ -1,0 +1,30 @@
+# Drift check for GitLab, Terraform or Bicep (set TOOL). Create a pipeline schedule (Build > Pipeline schedules,
+# e.g. daily) on main; this job only runs in scheduled pipelines.
+# CI/CD variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID (IDs, not secrets).
+# Azure federated credential: issuer and audience https://gitlab.com,
+# subject project_path:<group>/<project>:ref_type:branch:ref:main
+drift:
+  image: mcr.microsoft.com/azure-cli:latest # has az and jq; pin by digest in real use, see ../../pin-dependencies
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  variables:
+    TOOL: terraform # or: bicep
+    RG: rg-network-prod # used by the bicep check
+    TF_VERSION: 1.16.5
+  script:
+    - az login --service-principal -u "$AZURE_CLIENT_ID" -t "$AZURE_TENANT_ID" --federated-token "$GITLAB_OIDC_TOKEN" -o none
+    - az account set -s "$AZURE_SUBSCRIPTION_ID"
+    - |
+      if [ "$TOOL" = terraform ]; then
+        curl -sSLo /tmp/tf.zip "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+        python3 -m zipfile -e /tmp/tf.zip /usr/local/bin && chmod +x /usr/local/bin/terraform
+        export ARM_USE_CLI=true ARM_SUBSCRIPTION_ID="$AZURE_SUBSCRIPTION_ID"
+      else
+        az bicep install
+      fi
+    - set +e; "drift-detection/$TOOL/drift-check.sh"; code=$?; set -e
+    - if [ "$code" = 2 ]; then echo "Drift. Azure differs from the code."; exit 1; fi
+    - exit $code

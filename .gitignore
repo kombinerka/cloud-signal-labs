@@ -1,0 +1,19 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+tfplan.json
+crash.log
+# keep .terraform.lock.hcl in your own repos; examples here don't ship one
+.terraform.lock.hcl
+
+# outputs of the scripts
+discovery/
+lists/
+raw/
+generated.tf
+exported.bicep
+*.json.bak
+__pycache__/

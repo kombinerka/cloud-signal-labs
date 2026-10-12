@@ -1,0 +1,13 @@
+# PSRule for Azure: check Bicep against the Well-Architected Framework rules before anything is deployed.
+# Run locally:  pwsh -c "Install-Module PSRule.Rules.Azure -Scope CurrentUser -Force; Assert-PSRule -InputPath . -Module PSRule.Rules.Azure"
+configuration:
+  AZURE_BICEP_FILE_EXPANSION: true # build and expand .bicep files (needs the Bicep CLI)
+
+include:
+  module:
+    - PSRule.Rules.Azure
+
+input:
+  pathIgnore:
+    - "*.md"
+    - "pipelines/**"

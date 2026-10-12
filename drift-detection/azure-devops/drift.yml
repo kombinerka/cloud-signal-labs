@@ -1,0 +1,40 @@
+# Nightly drift check for Azure Pipelines, Terraform or Bicep (set TOOL).
+# The AzureCLI task signs in with the service connection (workload identity federation, no secret);
+# Terraform reuses that Azure CLI login, the Bicep check uses az directly.
+trigger: none
+pr: none
+
+schedules:
+  - cron: "17 5 * * *" # daily, 05:17 UTC
+    displayName: nightly drift check
+    branches:
+      include: [main]
+    always: true # run even if nothing was committed
+
+variables:
+  TOOL: terraform # or: bicep
+  RG: rg-network-prod # used by the bicep check
+
+pool:
+  vmImage: ubuntu-latest # has terraform, az and bicep preinstalled
+
+steps:
+  - checkout: self
+
+  - task: AzureCLI@2 # pin the full version you run, see ../../pin-dependencies
+    displayName: drift check ($(TOOL))
+    inputs:
+      azureSubscription: sc-drift-reader-wif # Reader + Storage Blob Data Reader on the Terraform state
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        export ARM_USE_CLI=true
+        ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+        export ARM_SUBSCRIPTION_ID
+        "drift-detection/$TOOL/drift-check.sh"
+        code=$?
+        if [ "$code" = 2 ]; then
+          echo "##vso[task.logissue type=error]Drift: Azure differs from the code. See the output above."
+          exit 1
+        fi
+        exit $code

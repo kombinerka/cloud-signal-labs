@@ -1,0 +1,26 @@
+# Azure Pipelines: create the service connection with workload identity federation
+# (Project settings > Service connections > New > Azure Resource Manager > Workload identity federation).
+# The pipeline only references the connection; there is no secret to store or rotate.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: deploy
+    jobs:
+      - deployment: deploy
+        environment: production # add approvals and checks to this environment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2 # pin the full version you run, see ../../pin-dependencies
+                  inputs:
+                    azureSubscription: sc-app-prod-wif
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: az account show

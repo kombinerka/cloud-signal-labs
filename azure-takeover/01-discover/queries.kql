@@ -1,0 +1,33 @@
+// Azure Resource Graph queries for week one. Read-only; Reader on the subscriptions is enough.
+// Run in the portal (Resource Graph Explorer) or with ./discover.sh
+
+// --- inventory: count per subscription and type
+resources
+| summarize count() by subscriptionId, type
+| order by subscriptionId asc, count_ desc
+
+// --- inventory: per resource group (where the sprawl is)
+resources
+| summarize resources = count() by subscriptionId, resourceGroup
+| order by resources desc
+
+// --- who can change access: Owner and User Access Administrator assignments
+authorizationresources
+| where type =~ 'microsoft.authorization/roleassignments'
+| extend roleId = tostring(split(properties.roleDefinitionId, '/')[-1])
+| where roleId in ('8e3af657-a8ff-443c-a75c-2fe8c4bcb635', '18d7d88d-d35e-4fb7-a5e3-5773c4a3d1b9')
+| project role = iff(roleId == '8e3af657-a8ff-443c-a75c-2fe8c4bcb635', 'Owner', 'User Access Administrator'),
+          principalId = tostring(properties.principalId),
+          principalType = tostring(properties.principalType),
+          scope = tostring(properties.scope)
+| order by scope asc
+
+// --- untagged by the old Terraform (after adding managed_by = "terraform" to all existing code, see ../02-whats-managed)
+resources
+| where tostring(tags['managed_by']) != 'terraform'
+| project id, name, type, resourceGroup, subscriptionId
+
+// --- existing locks (what is already protected)
+resources
+| where type =~ 'microsoft.authorization/locks'
+| project name, level = tostring(properties.level), id

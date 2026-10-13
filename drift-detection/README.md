@@ -2,6 +2,8 @@
 
 Companion code for the Cloud Signal Short **"What Is Infrastructure Drift? (In 40 Seconds)"**.
 
+<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+
 Your code says the network security group only allows 443. At 2 AM someone opened 22 in the portal and never closed
 it. Reviews still pass, because the code still looks right. The risk only exists in the portal.
 

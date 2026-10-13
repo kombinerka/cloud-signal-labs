@@ -2,6 +2,8 @@
 
 Companion code for the Cloud Signal Short **"You Clicked Pay Twice. Were You Charged Twice?"**
 
+<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+
 ![Cheat sheet](cheatsheet.png)
 
 A request is **idempotent** when doing it twice has the same effect as doing it once. Payments aren't, by nature:

@@ -3,7 +3,8 @@
 Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps, FinOps and
 Kubernetes, explained in practice.
 
-Every folder belongs to a video, has its own README (most with a one-page cheat sheet), and can be used on its own. Explainers get a bigger folder
+Every folder belongs to a video, has its own README (most with a one-page cheat sheet, some with a short animation
+of the mechanism from the video), and can be used on its own. Explainers get a bigger folder
 that follows the video step by step; Shorts get a small one for the single idea. Where infrastructure code comes up,
 you get **both Terraform and Bicep**. Where a pipeline comes up, you get **GitHub Actions, Azure Pipelines and GitLab
 CI**. Use the one your team runs.

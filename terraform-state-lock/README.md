@@ -2,6 +2,8 @@
 
 Companion code for the Cloud Signal Short **"Two Pipelines Run terraform apply at Once. Who Wins?"**
 
+<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+
 ![Cheat sheet](cheatsheet.png)
 
 Without a lock, both runs read the same state, both change things, and the last one to write the state wins. The

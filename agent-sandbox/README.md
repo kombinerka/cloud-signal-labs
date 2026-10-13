@@ -2,6 +2,8 @@
 
 Companion code for the Cloud Signal Short **"Your AI Agent Has Terminal Access. Does It Have Your Whole Computer?"**
 
+<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+
 ![Cheat sheet](cheatsheet.png)
 
 A command an AI agent runs has your rights: your files, your network, your saved credentials. "Please don't touch

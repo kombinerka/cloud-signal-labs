@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Private Endpoint Added. Why Is Traffic Still Public?"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 A private endpoint gives a service a private IP in your subnet, but your app connects to a **name**. If
 `mystore.blob.core.windows.net` still resolves to the public address, traffic goes the public way, or fails once

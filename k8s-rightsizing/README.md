@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Your Kubernetes Cluster Is Full. Your Nodes Are Idle. How?"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 The scheduler places pods by their **requests**, not by what they use. A pod that requests 2 CPUs reserves 2 CPUs
 even if it uses 0.2. Nodes fill up while sitting mostly idle, and the cluster autoscaler adds nodes you pay for.

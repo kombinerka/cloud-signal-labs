@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"How Does AI Answer From Documents It Was Never Trained On?"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 Retrieval-augmented generation: the model doesn't learn your documents, it **reads** them at question time.
 [`rag.py`](rag.py) shows every step with the standard library only:

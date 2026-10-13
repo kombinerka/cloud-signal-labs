@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"You Changed the Price. Why Does the Website Still Show the Old One?"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 An app keeps a copy of data (cache-aside) and serves it until its **time to live** expires. Until then, everyone
 sees the old value. Pick per kind of data:

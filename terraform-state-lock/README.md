@@ -2,9 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Two Pipelines Run terraform apply at Once. Who Wins?"**
 
-<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
 
-![Cheat sheet](cheatsheet.png)
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 Without a lock, both runs read the same state, both change things, and the last one to write the state wins. The
 other run's changes still exist in Azure but not in the state: drift and duplicate resources.

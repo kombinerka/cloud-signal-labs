@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"429 Too Many Requests: What Actually Happened?"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 A 429 means you hit the API's rate limit. A common way to enforce one is a **token bucket**: it refills at a steady
 rate (say 10 per second), every request takes a token, bursts are fine while tokens last, and an empty bucket answers

@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Kubernetes Keeps Killing Your Slow App? Check the Liveness Probe"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 If the app needs 90 seconds to start and the liveness probe starts checking after 10, the probe fails while the app
 is still loading, Kubernetes restarts it, and the restart is just as slow: a crash loop caused by the health check.

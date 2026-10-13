@@ -2,9 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Your AI Agent Has Terminal Access. Does It Have Your Whole Computer?"**
 
-<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
 
-![Cheat sheet](cheatsheet.png)
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 A command an AI agent runs has your rights: your files, your network, your saved credentials. "Please don't touch
 the secrets folder" in a prompt is a request, not a boundary. The boundary has to be enforced **outside** the model.

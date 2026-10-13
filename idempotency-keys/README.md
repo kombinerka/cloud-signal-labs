@@ -2,9 +2,9 @@
 
 Companion code for the Cloud Signal Short **"You Clicked Pay Twice. Were You Charged Twice?"**
 
-<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
 
-![Cheat sheet](cheatsheet.png)
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 A request is **idempotent** when doing it twice has the same effect as doing it once. Payments aren't, by nature:
 every POST could be a new charge. The fix is an idempotency key:

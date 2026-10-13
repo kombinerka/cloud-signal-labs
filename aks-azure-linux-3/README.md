@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Your AKS Node Pool Might Stop Scaling on October 31"**
 
-![Cheat sheet](cheatsheet.png)
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 Azure Linux 2.0 reached end of support on AKS on November 30, 2025; its node image has been frozen since. On
 October 31, 2026 the node images are removed and node pools that still use them **can't scale**.

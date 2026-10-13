@@ -2,7 +2,9 @@
 
 Companion code for the Cloud Signal Short **"Why A Can't Reach C in Azure (Peering Isn't Transitive)"**.
 
-<img src="how-it-works.png" width="540" alt="How it works (animated, from the video)">
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
 
 A is peered with B, B with C, and a packet from A to C never arrives. A peering connects exactly two networks;
 traffic doesn't hop through a third one on its own. Two ways to connect A and C:

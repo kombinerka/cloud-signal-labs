@@ -1,0 +1,40 @@
+# A slow-starting app (up to ~150 s) without a crash loop.
+# startup: has it finished starting?   liveness: is the process stuck?   readiness: can it take traffic now?
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: slow-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: slow-app}
+  template:
+    metadata:
+      labels: {app: slow-app}
+    spec:
+      containers:
+        - name: app
+          image: registry.example.com/slow-app:1.4.2
+          ports:
+            - containerPort: 8080
+          # Runs first. Liveness and readiness are held back until it succeeds.
+          # 30 x 5 s = up to 150 s to start; then Kubernetes restarts the container.
+          startupProbe:
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 5
+            failureThreshold: 30
+          # Only "is the process alive and not stuck?". No database or dependency checks here:
+          # if the database is slow, restarting every pod makes it worse.
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 10
+            failureThreshold: 3
+          # "Can I take traffic right now?" Dependencies belong here: failing removes the pod from the
+          # Service endpoints, it doesn't restart it.
+          readinessProbe:
+            httpGet: {path: /ready, port: 8080}
+            periodSeconds: 5
+            failureThreshold: 2
+          resources:
+            requests: {cpu: 250m, memory: 512Mi}
+            limits: {memory: 512Mi}

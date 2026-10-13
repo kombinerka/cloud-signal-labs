@@ -1,0 +1,4 @@
+# uv: resolve as if no package version published after this date existed (move it forward deliberately).
+[tool.uv]
+exclude-newer = "2026-10-10T00:00:00Z"
+index-url = "https://pkgs.example.com/pypi/simple"

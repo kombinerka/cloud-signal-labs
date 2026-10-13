@@ -1,0 +1,11 @@
+// A dev container for agent work: the agent's terminal runs here, not on your machine.
+// Open the folder in VS Code > "Reopen in Container". Keep cloud and Git credentials OUT of this container:
+// sign in only to what the task needs, with short-lived, scoped tokens.
+{
+  "name": "agent-sandbox",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "runArgs": ["--cap-drop=ALL", "--security-opt=no-new-privileges"],
+  "containerEnv": {},
+  "remoteUser": "vscode",
+  "mounts": []
+}

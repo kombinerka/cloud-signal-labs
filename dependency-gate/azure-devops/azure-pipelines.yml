@@ -1,0 +1,36 @@
+# Azure DevOps: the build stage uses no service connection; only the deploy stage does.
+# Install from an Azure Artifacts feed with an upstream source, so every package passes through one place you control.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: build
+    jobs:
+      - job: build
+        steps:
+          - checkout: self
+          - script: npm ci --ignore-scripts && npm test && npm run build --if-present
+          - publish: dist
+            artifact: app
+
+  - stage: deploy
+    dependsOn: build
+    jobs:
+      - deployment: deploy
+        environment: production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: app
+                - task: AzureCLI@2 # pin the full version you run, see ../../pin-dependencies
+                  inputs:
+                    azureSubscription: sc-prod-wif # the only place with credentials
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: echo "deploy $(Pipeline.Workspace)/app here (no package installs)"

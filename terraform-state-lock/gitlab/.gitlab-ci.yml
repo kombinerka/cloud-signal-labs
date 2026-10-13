@@ -1,0 +1,22 @@
+# resource_group: GitLab runs only one job per resource group at a time; others wait.
+apply-prod:
+  image:
+    name: hashicorp/terraform:1.16.5 # pin by digest in real use
+    entrypoint: [""]
+  resource_group: terraform-prod
+  environment: production
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  variables:
+    ARM_USE_OIDC: "true"
+    ARM_CLIENT_ID: $AZURE_CLIENT_ID
+    ARM_TENANT_ID: $AZURE_TENANT_ID
+    ARM_SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID
+  script:
+    - export ARM_OIDC_TOKEN="$GITLAB_OIDC_TOKEN"
+    - cd terraform-state-lock/terraform
+    - terraform init -input=false
+    - terraform apply -auto-approve -input=false -lock-timeout=10m

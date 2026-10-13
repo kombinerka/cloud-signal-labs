@@ -1,0 +1,33 @@
+# Azure DevOps: add an "Exclusive lock" check on the production environment (Environments > production >
+# Approvals and checks > Exclusive lock). With lockBehavior: sequential, runs queue up and execute one at a time.
+trigger:
+  branches:
+    include: [main]
+
+lockBehavior: sequential
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: apply
+    jobs:
+      - deployment: apply
+        environment: production # has the Exclusive lock check
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2 # pin the full version you run
+                  inputs:
+                    azureSubscription: sc-prod-wif
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    workingDirectory: terraform-state-lock/terraform
+                    inlineScript: |
+                      export ARM_USE_CLI=true
+                      ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+                      export ARM_SUBSCRIPTION_ID
+                      terraform init -input=false
+                      terraform apply -auto-approve -input=false -lock-timeout=10m

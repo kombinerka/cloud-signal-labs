@@ -1,0 +1,6 @@
+# pnpm 10.16+: refuse versions published less than 3 days ago (value in minutes).
+# Most malicious versions are found and pulled within hours to days.
+minimumReleaseAge: 4320
+# exceptions for your own packages that you publish and consume right away:
+minimumReleaseAgeExclude:
+  - "@my-org/*"

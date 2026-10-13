@@ -3,7 +3,7 @@
 Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps, FinOps and
 Kubernetes, explained in practice.
 
-Every folder belongs to a video, has its own README, and can be used on its own. Explainers get a bigger folder
+Every folder belongs to a video, has its own README (most with a one-page cheat sheet), and can be used on its own. Explainers get a bigger folder
 that follows the video step by step; Shorts get a small one for the single idea. Where infrastructure code comes up,
 you get **both Terraform and Bicep**. Where a pipeline comes up, you get **GitHub Actions, Azure Pipelines and GitLab
 CI**. Use the one your team runs.
@@ -22,6 +22,18 @@ CI**. Use the one your team runs.
 
 | Folder | Short | Terraform | Bicep | Pipelines / other |
 |---|---|:-:|:-:|---|
+| [agent-sandbox](agent-sandbox/) | Your AI Agent Has Terminal Access. Does It Have Your Whole Computer? | | | container + dev container sandbox |
+| [dependency-gate](dependency-gate/) | Your AI Agent Installed One Package. Could It Steal Your Secrets? | | | GitHub · Azure DevOps · GitLab, package manager settings |
+| [k8s-rightsizing](k8s-rightsizing/) | Your Kubernetes Cluster Is Full. Your Nodes Are Idle. How? | | | VPA, requests-vs-usage script |
+| [gpv1-migration](gpv1-migration/) | Azure Is Retiring GPv1 Storage This Month. Could Your Bill Change? | ✓ | ✓ | find + upgrade script |
+| [terraform-state-lock](terraform-state-lock/) | Two Pipelines Run terraform apply at Once. Who Wins? | ✓ | note | GitHub · Azure DevOps · GitLab |
+| [idempotency-keys](idempotency-keys/) | You Clicked Pay Twice. Were You Charged Twice? | | | Python |
+| [rag-basics](rag-basics/) | How Does AI Answer From Documents It Was Never Trained On? | | | Python |
+| [aks-azure-linux-3](aks-azure-linux-3/) | Your AKS Node Pool Might Stop Scaling on October 31 | ✓ | ✓ | find + migrate script |
+| [startup-probe](startup-probe/) | Kubernetes Keeps Killing Your Slow App? Check the Liveness Probe | | | Kubernetes YAML |
+| [private-endpoint-dns](private-endpoint-dns/) | Private Endpoint Added. Why Is Traffic Still Public? | ✓ | ✓ | DNS check script |
+| [rate-limit-429](rate-limit-429/) | 429 Too Many Requests: What Actually Happened? | | | Python |
+| [cache-invalidation](cache-invalidation/) | You Changed the Price. Why Does the Website Still Show the Old One? | | | Python |
 | [pin-dependencies](pin-dependencies/) | Pin What Your Pipeline Runs | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 | [drift-detection](drift-detection/) | What Is Infrastructure Drift? | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 | [import-existing](import-existing/) | Built in the Azure Portal? Import It, Don't Rebuild It | ✓ | ✓ | |

@@ -1,0 +1,24 @@
+# GitLab: put deployment variables on the "production" environment scope (Settings > CI/CD > Variables,
+# Environment scope: production) and protect them. The build job has no environment, so it never sees them.
+# Dependency Firewall (early access, Premium/Ultimate) adds policy checks before install on top of this.
+stages: [build, deploy]
+
+build:
+  stage: build
+  image: node:22-bookworm-slim # pin by digest in real use, see ../../pin-dependencies
+  script:
+    - npm ci --ignore-scripts
+    - npm test
+    - npm run build --if-present
+  artifacts:
+    paths: [dist/]
+
+deploy:
+  stage: deploy
+  image: mcr.microsoft.com/azure-cli:latest
+  environment: production # only here: environment-scoped deployment variables
+  needs: [build]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - echo "deploy dist/ here (no package installs in this job)"

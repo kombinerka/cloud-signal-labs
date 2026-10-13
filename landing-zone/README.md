@@ -2,6 +2,10 @@
 
 Companion code for the Cloud Signal explainer on **Azure landing zones** (Orchard's prepared place to build).
 
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
+
 An empty subscription gives a team somewhere to put resources, but no agreement about access, connections or who
 investigates a change. A landing zone supplies that foundation: the **platform team** owns shared guardrails and
 capabilities, the **workload team** owns its application inside them.

@@ -3,6 +3,10 @@
 Companion code for the Cloud Signal videos **"GitHub Actions → Azure Without a Secret, in 2 Minutes"** and
 **"Deploy to Azure Without a Stored Secret (GitHub Actions OIDC)"**.
 
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version: [cheatsheet.png](cheatsheet.png) · the 2-minute version's sheet: [cheatsheet-short.png](cheatsheet-short.png) ([animated](cheatsheet-short-animated.png))</sub>
+
 A client secret in your CI system is a password that works from anywhere until someone rotates it. With workload
 identity federation the job proves *where it runs* instead: the CI system signs a short-lived token describing the
 job, Microsoft Entra ID checks it against a federated credential, and Azure returns an access token that expires with

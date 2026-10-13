@@ -2,6 +2,10 @@
 
 Companion code for the Cloud Signal explainer **"How CI/CD Actually Works — Without Naming a Single Tool"**.
 
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">
+
+<sub>Static version for printing or sharing: [cheatsheet.png](cheatsheet.png)</sub>
+
 The video names no tools on purpose: the habits matter more than the product. Here is the same pipeline on
 **GitHub Actions**, **Azure Pipelines** and **GitLab CI**, so you can see that only the syntax changes.
 

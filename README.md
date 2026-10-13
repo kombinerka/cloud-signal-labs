@@ -3,8 +3,8 @@
 Working examples for the videos on the **Cloud Signal** YouTube channel: Azure, DevOps, DevSecOps, FinOps and
 Kubernetes, explained in practice.
 
-Every folder belongs to a video, has its own README (most with a one-page cheat sheet, some with a short animation
-of the mechanism from the video), and can be used on its own. Explainers get a bigger folder
+Every folder belongs to a video, has its own README (most with a one-page cheat sheet, animated where the video
+has a mechanism to show), and can be used on its own. Explainers get a bigger folder
 that follows the video step by step; Shorts get a small one for the single idea. Where infrastructure code comes up,
 you get **both Terraform and Bicep**. Where a pipeline comes up, you get **GitHub Actions, Azure Pipelines and GitLab
 CI**. Use the one your team runs.
@@ -18,6 +18,11 @@ CI**. Use the one your team runs.
 | [oidc-deploy](oidc-deploy/) | Deploy to Azure Without a Stored Secret (and the 2-minute version) | identity + federated credential in Terraform, Bicep or CLI; deploy pipelines for GitHub, Azure DevOps, GitLab; troubleshooting table |
 | [managed-identity](managed-identity/) | Azure Managed Identity Explained: How It Works & Why Access Is Denied | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
 | [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
+
+## AZ-900 course: study index
+
+[az-900](az-900/): one cheat sheet per episode of the free AZ-900 Azure Fundamentals course (15 episodes) and per
+practice set (4), static for printing and animated where an episode has a flow.
 
 ## Shorts (under a minute): one idea, one small folder
 

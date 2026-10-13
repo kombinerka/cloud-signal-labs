@@ -2,6 +2,8 @@
 
 Companion code for the Cloud Signal video **"You Inherited a Messy Azure Setup. Don't Start With Terraform."**
 
+![Cheat sheet](cheatsheet.png)
+
 Eight environments, hundreds of resources each, half in Terraform and half clicked together in the portal, a thin
 handover, and a client who wants it all "under code" in a few months. Importing everything is usually the wrong first
 move. This folder follows the video: look first, decide the architecture, then pick **Terraform or Bicep**; both

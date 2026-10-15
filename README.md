@@ -24,6 +24,12 @@ CI**. Use the one your team runs.
 [az-900](az-900/): one cheat sheet per episode of the free AZ-900 Azure Fundamentals course (15 episodes) and per
 practice set (4), static for printing and animated where an episode has a flow.
 
+## AI-901 course: study index and code
+
+[ai-901](ai-901/): one cheat sheet per episode of the free AI-901 Azure AI Fundamentals course (12 episodes) and per
+practice set (2), plus the Python examples from the hands-on episodes: chat app, agent client, text and speech,
+vision and image generation, Content Understanding.
+
 ## Shorts (under a minute): one idea, one small folder
 
 | Folder | Short | Terraform | Bicep | Pipelines / other |

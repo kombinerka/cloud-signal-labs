@@ -4,32 +4,32 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 
 | Short | Cheat sheet |
 |---|---|
-| N18 | [Tesla's "Flying" Roadster: What the Demo Actually Proved](n18-teslaroadster.png) |
-| S22 | [Your Site Went Viral. Why Didn't a Second Server Help?](s22-loadbalancer.png) |
-| S23 | [Container or Virtual Machine? The Difference Is One Kernel](s23-containervm.png) |
-| S24 | [Faster Internet Plan, Same Slow Page. Why?](s24-latency.png) |
-| S25 | [A Site Got Breached. Do They Have Your Password?](s25-hashing.png) |
-| S26 | [Why Are You Still Logged In Tomorrow?](s26-sessiontoken.png) |
-| S27 | [Ten Services, Ten Logins, Ten Addresses. Or One Front Door?](s27-apigateway.png) |
-| S28 | [HTTPS Means the Site Is Safe, Right? Not Exactly.](s28-https.png) |
-| S29 | [You Bought a Server for One Busy Weekend. CapEx vs OpEx (AZ-900)](s29-capexopex.png) |
-| S30 | [Your Azure Region Has a Pair. It Still Copies Nothing (AZ-900)](s30-zonevspair.png) |
-| S31 | [A Datacenter Floods. Does Your Azure Storage Survive? (LRS vs ZRS vs GRS)](s31-redundancy.png) |
-| S32 | [Contributor Role, Still Blocked. Why? (RBAC vs Azure Policy)](s32-rbacpolicy.png) |
-| S33 | [Same Question, Different Answer. Which Dial Do You Turn?](s33-temperature.png) |
-| S34 | [Your AI Said 90 Days. The Policy Says 30. Why?](s34-hallucination.png) |
-| S35 | [Voice-Only AI Shuts Out a Customer. Unfair, or Not Inclusive?](s35-fairinclusive.png) |
-| S36 | [A Boot Shop Bot Answered a Question About Spain. Why?](s36-systemprompt.png) |
-| S37 | [Your Vision Model Can't Draw a Banner. Wrong Model?](s37-describedraw.png) |
-| S38 | [You Got the Text. You Wanted the Total. (OCR vs Extraction)](s38-ocrvsextract.png) |
-| T18 | [One Pod Got Killed, the Other Got Slow. Same Limit?](t18-oomkilled.png) |
-| T19 | [az login Worked. So Where Are Your Resources?](t19-wrongsub.png) |
-| T20 | [Your Pipeline Broke on Monday. Nobody Changed Anything.](t20-secretexpiry.png) |
-| T21 | [Your Pipeline Signed In to Azure. So Why Can't It Deploy?](t21-rbacpaira.png) |
-| T22 | [AuthorizationFailed After Login? It's a Missing Role](t22-rbacpairb.png) |
-| T23 | [Role Granted, Still Access Denied. Why?](t23-roledelay.png) |
-| T24 | [A Stranger's Pull Request Got Your Secrets. How?](t24-prtarget.png) |
-| T25 | [Deleted a Key Vault. Why Is the Name Still Taken?](t25-kvsoftdelete.png) |
-| T26 | [Marked It Sensitive. Why Is the Password Still in Plain Text?](t26-tfstatesecrets.png) |
-| T27 | [Azure Policy Assigned. Why Was It Created Anyway?](t27-policyaudit.png) |
-| W1 | [Censored News, Published Inside Minecraft: The Uncensored Library](w1-uncensoredlibrary.png) |
+| N18 | [Tesla's "Flying" Roadster Demo: A Hop, Not a Flight](n18-teslaroadster.png) |
+| S22 | [Load Balancers Explained: Why Adding a Server Isn't Enough](s22-loadbalancer.png) |
+| S23 | [Containers vs Virtual Machines: The Real Difference](s23-containervm.png) |
+| S24 | [Bandwidth vs Latency: Why a Faster Plan Doesn't Load Pages Faster](s24-latency.png) |
+| S25 | [Password Hashing Explained: What a Data Breach Really Leaks](s25-hashing.png) |
+| S26 | [Session Cookies Explained: Why You Stay Logged In](s26-sessiontoken.png) |
+| S27 | [API Gateways Explained: One Entry Point for Many Services](s27-apigateway.png) |
+| S28 | [What HTTPS Actually Protects (and What It Doesn't)](s28-https.png) |
+| S29 | [CapEx vs OpEx: Why the Cloud Is an Operating Expense (AZ-900)](s29-capexopex.png) |
+| S30 | [Availability Zones vs Region Pairs: What Protects Your App? (AZ-900)](s30-zonevspair.png) |
+| S31 | [LRS vs ZRS vs GRS: Azure Storage Redundancy Explained (AZ-900)](s31-redundancy.png) |
+| S32 | [RBAC vs Azure Policy: Why a Contributor Can Still Be Blocked (AZ-900)](s32-rbacpolicy.png) |
+| S33 | [Temperature vs Top-P: Which AI Setting Should You Change? (AI-901)](s33-temperature.png) |
+| S34 | [AI Hallucinations Explained: Why Grounding Fixes Them (AI-901)](s34-hallucination.png) |
+| S35 | [Fairness vs Inclusiveness in Responsible AI (AI-901)](s35-fairinclusive.png) |
+| S36 | [System Prompt vs User Prompt: Keep Your Chatbot On Topic (AI-901)](s36-systemprompt.png) |
+| S37 | [Vision Models vs Image Generation: Which One Do You Need? (AI-901)](s37-describedraw.png) |
+| S38 | [OCR vs Information Extraction: Reading Text vs Understanding It (AI-901)](s38-ocrvsextract.png) |
+| T18 | [Kubernetes OOMKilled vs CPU Throttling: Memory vs CPU Limits](t18-oomkilled.png) |
+| T19 | [Azure CLI Can't Find Your Resources? Check the Subscription](t19-wrongsub.png) |
+| T20 | [Expired Client Secret: Why Your Azure Pipeline Suddenly Fails](t20-secretexpiry.png) |
+| T21 | [Azure Pipeline Signed In but Can't Deploy? Authentication vs Authorization](t21-rbacpaira.png) |
+| T22 | [Fixing AuthorizationFailed in Azure: Assign the Missing Role](t22-rbacpairb.png) |
+| T23 | [Azure Role Assigned but Still 403? Role Changes Take Time](t23-roledelay.png) |
+| T24 | [GitHub Actions pull_request_target: How Forks Can Steal Secrets](t24-prtarget.png) |
+| T25 | [Azure Key Vault Soft Delete: Why the Vault Name Is Still Taken](t25-kvsoftdelete.png) |
+| T26 | [Terraform sensitive = true Doesn't Hide Secrets in State](t26-tfstatesecrets.png) |
+| T27 | [Azure Policy Audit vs Deny: Why the Resource Was Still Created](t27-policyaudit.png) |
+| W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) |

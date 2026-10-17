@@ -1,6 +1,6 @@
 # Shorts cheat sheets
 
-One-page summary for each Cloud Signal Short (S = simple, T = technical, N = news). Free to save and share.
+One-page summary for each Cloud Signal Short (S = simple, T = technical, N = news, W = tech in the wild). Free to save and share.
 
 | Short | Cheat sheet |
 |---|---|
@@ -32,3 +32,4 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | T25 | [Deleted a Key Vault. Why Is the Name Still Taken?](t25-kvsoftdelete.png) |
 | T26 | [Marked It Sensitive. Why Is the Password Still in Plain Text?](t26-tfstatesecrets.png) |
 | T27 | [Azure Policy Assigned. Why Was It Created Anyway?](t27-policyaudit.png) |
+| W1 | [Censored News, Published Inside Minecraft: The Uncensored Library](w1-uncensoredlibrary.png) |

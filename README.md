@@ -38,6 +38,8 @@ KQL queries, Git hooks and scripts, MCP configuration. AZ-401 is in beta; valida
 
 ## Shorts (under a minute): one idea, one small folder
 
+One-page cheat sheets for every Short: [shorts/](shorts/README.md).
+
 | Folder | Short | Terraform | Bicep | Pipelines / other |
 |---|---|:-:|:-:|---|
 | [agent-sandbox](agent-sandbox/) | Your AI Agent Has Terminal Access. Does It Have Your Whole Computer? | | | container + dev container sandbox |

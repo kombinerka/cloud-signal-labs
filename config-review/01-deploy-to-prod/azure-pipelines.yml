@@ -1,0 +1,62 @@
+# Pinecone shop: build on every branch, deploy to production only from main.
+#
+# What actually protects production is NOT in this file (anyone who can push a
+# branch can edit this file). It lives on the resources, in Azure DevOps:
+#   - service connection "pinecone-prod": pipeline permissions restricted to this
+#     pipeline (no "Grant access permission to all pipelines"), and a Branch
+#     control check allowing only refs/heads/main
+#   - environment "production": Approvals (release managers), optional
+#     Business hours and Exclusive lock
+# The condition on the Deploy stage below is convenience, not security.
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildAndTest
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - checkout: self
+          - script: npm ci && npm test
+            displayName: Build and test
+          - publish: $(System.DefaultWorkingDirectory)/dist
+            artifact: shop
+
+  - stage: Deploy
+    dependsOn: Build
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployShop
+        displayName: Deploy the shop to production
+        pool:
+          vmImage: ubuntu-latest
+        # Approvals and checks on this environment run before the stage starts.
+        environment: production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # The pipeline artifact "shop" is downloaded automatically in the deploy hook.
+                - task: AzureCLI@2
+                  displayName: Deploy with the production service connection
+                  inputs:
+                    azureSubscription: pinecone-prod   # only the connection name, no secret
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az account show --output table
+                      az webapp deploy \
+                        --resource-group rg-pinecone-shop \
+                        --name app-pinecone-shop \
+                        --src-path "$(Pipeline.Workspace)/shop/shop.zip" \
+                        --type zip

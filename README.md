@@ -19,6 +19,13 @@ CI**. Use the one your team runs.
 | [managed-identity](managed-identity/) | Azure Managed Identity Explained: How It Works & Why Access Is Denied | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
 | [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
 
+## Pilots: Find the Fault and Configuration Review
+
+| Folder | Video |
+|---|---|
+| [find-the-fault/01-private-endpoint-dns](find-the-fault/01-private-endpoint-dns/) | Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP |
+| [config-review/01-deploy-to-prod](config-review/01-deploy-to-prod/) | Azure DevOps Production Deployments: 6-Point Security Review |
+
 ## AZ-900 course: study index
 
 [az-900](az-900/): one cheat sheet per episode of the free AZ-900 Azure Fundamentals course (15 episodes) and per

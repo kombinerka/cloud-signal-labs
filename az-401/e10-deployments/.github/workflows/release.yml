@@ -1,0 +1,80 @@
+# Pinecone shop release on GitHub Actions (AZ-401 episode 10).
+# database -> api -> web via "needs"; web goes to the staging slot, then swaps.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write          # OpenID Connect to Azure (episode 12)
+
+jobs:
+  database:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v6
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - uses: azure/sql-action@v2.3
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './db/shop.dacpac'
+          action: 'publish'
+
+  api:
+    needs: database
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: pinecone-api-prod
+          images: pineconeacr.azurecr.io/api:${{ github.sha }}   # tag = commit
+
+  web:
+    needs: api
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v6
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: pinecone-shop-prod
+          slot-name: staging
+          package: ./dist
+      - name: Swap staging into production
+        run: az webapp deployment slot swap --resource-group rg-pinecone-prod --name pinecone-shop-prod --slot staging --target-slot production
+      - name: Health check after the swap
+        run: curl --fail https://pinecone-shop-prod.azurewebsites.net/health
+
+  # Runs only if "web" failed. Swapping back is only correct if the swap already
+  # happened (for example, a later health-check step failed).
+  rollback:
+    needs: web
+    if: failure()
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Swap the same slots again
+        run: az webapp deployment slot swap --resource-group rg-pinecone-prod --name pinecone-shop-prod --slot staging --target-slot production

@@ -1,0 +1,36 @@
+# Pinecone shop: secrets from Key Vault, a secure file, and no leaks.
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  # Variable group linked to Key Vault (Pipelines > Library): only secret
+  # names are mapped, values are fetched from the vault at run time.
+  - group: pinecone-shop-kv
+
+steps:
+  # Option 1: read secrets with the Azure Key Vault task.
+  - task: AzureKeyVault@2
+    displayName: Azure Key Vault
+    inputs:
+      azureSubscription: pinecone-prod-wif   # workload identity federation
+      KeyVaultName: kv-pinecone-shop
+      SecretsFilter: 'StorageKey'            # '*' = all secrets
+      RunAsPreJob: false
+
+  # A file secret from Pipelines > Library > Secure files.
+  - task: DownloadSecureFile@1
+    name: signingCert
+    displayName: Download signing certificate
+    inputs:
+      secureFile: 'pinecone-signing.pfx'
+
+  # Secret variables are NOT decrypted into env vars automatically:
+  # map each one explicitly. Never echo it, never pass it as an argument.
+  - script: ./deploy.sh
+    displayName: Deploy
+    env:
+      STORAGE_KEY: $(StorageKey)
+      CERT_PATH: $(signingCert.secureFilePath)

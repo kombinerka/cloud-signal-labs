@@ -1,0 +1,7 @@
+# Diff coverage for pull requests in Azure Repos (file must sit at the repository root).
+# Make the "<pipeline name>/codecoverage" status a required branch policy to block merges.
+coverage:
+  status:
+    comments: on    # per-file coverage as a PR comment
+    diff:
+      target: 70%   # share of changed lines that tests must cover (default 70%)

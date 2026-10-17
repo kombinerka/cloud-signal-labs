@@ -1,0 +1,31 @@
+# Rolling deployment to virtual machines registered in an environment
+# (the rolling strategy currently supports VM resources only).
+trigger: none
+
+stages:
+  - stage: Deploy
+    jobs:
+      - deployment: WebFarm
+        environment:
+          name: pinecone-prod
+          resourceType: VirtualMachine
+          tags: web
+        strategy:
+          rolling:
+            maxParallel: 1               # one VM at a time; the rest keep serving
+            preDeploy:
+              steps:
+                - script: echo "Take this VM out of the load balancer"
+            deploy:
+              steps:
+                - script: ./deploy.sh
+            postRouteTraffic:
+              steps:
+                - script: curl --fail http://localhost/health
+            on:
+              failure:
+                steps:
+                  - script: ./rollback.sh
+              success:
+                steps:
+                  - script: echo "VM updated and healthy"

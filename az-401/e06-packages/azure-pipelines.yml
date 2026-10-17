@@ -1,0 +1,53 @@
+# AZ-401 episode 6 - Pinecone pricing library: SemVer package + versioned pipeline artifact.
+# Fictional names: organization "pinecone", project "pinecone-shop", feed "pinecone-packages".
+# The project Build Service and Project Collection Build Service need the
+# Feed Publisher (Contributor) role on the feed. No secrets in this file.
+
+# Run number: date + revision, e.g. 20261016.3 ($(Rev:.r) resets when the date changes)
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  # Bump majorMinor for breaking changes (major) or new features (minor).
+  majorMinor: '2.0'
+  # counter keeps one count per prefix: a new majorMinor starts again at the seed (0).
+  patch: $[counter(variables['majorMinor'], 0)]
+  # Package version used by the pack step (byEnvVar reads this variable).
+  PackageVersion: $(majorMinor).$(patch)
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: 'tests/**/*.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: Pack with a SemVer version
+    inputs:
+      command: pack
+      packagesToPack: 'src/Pinecone.Pricing/Pinecone.Pricing.csproj'
+      versioningScheme: byEnvVar
+      versionEnvVar: PackageVersion
+
+  # Authenticate to Azure Artifacts, then push to the project-scoped feed.
+  - task: NuGetAuthenticate@1
+    displayName: NuGet authenticate
+
+  - script: >
+      dotnet nuget push
+      --source https://pkgs.dev.azure.com/pinecone/pinecone-shop/_packaging/pinecone-packages/nuget/v3/index.json
+      --api-key az
+      $(Build.ArtifactStagingDirectory)/*.nupkg
+    displayName: Push to pinecone-packages
+
+  # Pipeline artifact named after the run, so a deployment can be traced back to this build.
+  - publish: $(Build.ArtifactStagingDirectory)
+    artifact: pricing-$(Build.BuildNumber)

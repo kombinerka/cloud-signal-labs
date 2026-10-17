@@ -1,0 +1,65 @@
+# Pinecone shop: CI + deploy on GitHub Actions (AZ-401 episode 9).
+# Jobs run in parallel by default; "needs" sets the order.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/node-setup     # composite action
+      - run: npm run build
+
+  unit:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      max-parallel: 2
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/node-setup
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+
+  integration:
+    needs: build            # runs in parallel with "unit"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/node-setup
+      - run: npm run test:integration
+
+  deploy-staging:
+    needs: [unit, integration]
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/deploy.yml        # reusable workflow
+    with:
+      environment: staging
+      app-name: pinecone-shop-staging
+    secrets: inherit
+    permissions:
+      contents: read
+      id-token: write
+
+  deploy-production:
+    needs: deploy-staging
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: production    # required reviewers on this environment
+      app-name: pinecone-shop-prod
+    secrets: inherit
+    permissions:
+      contents: read
+      id-token: write

@@ -1,0 +1,38 @@
+# AZ-401 episode 8 - trigger rules and runner selection in GitHub Actions (fictional repo pinecone-gear/trail-api).
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'          # pushes that only touch docs don't start a run
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '30 2 * * *'   # UTC; runs on the latest commit of the default branch
+  workflow_dispatch:       # manual run, with inputs
+    inputs:
+      run_integration:
+        description: 'Run integration tests'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read           # least privilege for GITHUB_TOKEN
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # standard GitHub-hosted runner
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo "build and unit tests"
+
+  integration:
+    needs: build           # same idea as dependsOn in Azure Pipelines
+    if: github.event_name != 'workflow_dispatch' || inputs.run_integration
+    runs-on: [self-hosted, linux]   # routed by labels to a self-hosted runner
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo "integration tests against private resources"

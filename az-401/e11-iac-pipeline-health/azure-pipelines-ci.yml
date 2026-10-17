@@ -1,0 +1,38 @@
+# Pipeline health: faster, cheaper CI in Azure Pipelines (AZ-401 episode 11).
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - docs
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+jobs:
+  - job: Test
+    timeoutInMinutes: 15                 # default is 60
+    strategy:
+      parallel: 3                        # slice tests across 3 agents
+    steps:
+      - checkout: self
+        fetchDepth: 1                    # shallow fetch
+      - task: Cache@2
+        displayName: Cache npm
+        inputs:
+          key: 'npm | "$(Agent.OS)" | package-lock.json'
+          restoreKeys: |
+            npm | "$(Agent.OS)"
+          path: $(npm_config_cache)
+      - script: npm ci
+      - script: npm test -- --shard=$(System.JobPositionInPhase)/$(System.TotalJobsInPhase)
+        displayName: Run this slice of the tests
+      - task: PublishTestResults@2
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFormat: JUnit
+          testResultsFiles: '**/junit*.xml'

@@ -1,0 +1,51 @@
+# Pinecone IaC with Terraform on GitHub Actions (AZ-401 episode 11).
+# PR: fmt + validate + plan. Daily schedule: drift detection, opens an issue on drift.
+name: Terraform
+
+on:
+  pull_request:
+    paths: ['terraform/**']
+  schedule:
+    - cron: '0 5 * * *'     # daily drift check
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+
+env:
+  # azurerm provider + backend sign in with OpenID Connect (see the provider docs).
+  ARM_USE_OIDC: 'true'
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - uses: actions/checkout@v6
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+      - run: terraform fmt -check
+      - run: terraform init
+      - run: terraform validate
+      - name: Plan (exit code 2 = changes)
+        id: plan
+        run: |
+          set +e
+          terraform plan -detailed-exitcode -input=false
+          echo "exitcode=$?" >> "$GITHUB_OUTPUT"
+      - name: Fail on plan error
+        if: steps.plan.outputs.exitcode == '1'
+        run: exit 1
+      - name: Open a drift issue
+        if: github.event_name == 'schedule' && steps.plan.outputs.exitcode == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Terraform drift detected" --body "Scheduled plan found changes made outside Terraform. Run ${{ github.run_id }}."

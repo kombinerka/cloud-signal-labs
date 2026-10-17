@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ado": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "pinecone", "-a", "azcli"],
+      "tools": ["wit_get_work_item", "wit_get_work_items_batch_by_ids"]
+    }
+  }
+}

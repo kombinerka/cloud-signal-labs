@@ -1,0 +1,4 @@
+# The last matching pattern takes precedence.
+*            @pinecone-gear/devs
+/docs/       @pinecone-gear/writers
+/infra/      @pinecone-gear/platform

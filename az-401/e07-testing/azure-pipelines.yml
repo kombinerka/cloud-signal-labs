@@ -1,0 +1,62 @@
+# AZ-401 episode 7 - Pinecone checkout: unit tests, test results, code coverage, then a load test.
+# Fictional names: project "pinecone-shop", service connection "pinecone-loadtest-sc",
+# Azure Load Testing resource "pinecone-load" in resource group "rg-pinecone-test".
+# Release gates (approvals, Query Azure Monitor alerts, ...) are checks on the environment,
+# added in the web UI, not in this file.
+
+trigger:
+  branches:
+    include:
+      - main
+
+stages:
+  - stage: Test
+    jobs:
+      - job: UnitTests
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          # Runs the tests; publishTestResults (default true) writes TRX and publishes to the Tests tab.
+          - task: DotNetCoreCLI@2
+            displayName: Unit tests + coverage
+            inputs:
+              command: test
+              projects: 'tests/**/*.csproj'
+              arguments: '--collect "Code coverage"'
+              publishTestResults: true
+              testRunTitle: 'checkout unit tests'
+
+          # Coverage report for the run summary (and diff coverage on PRs, see azurepipelines-coverage.yml).
+          - task: PublishCodeCoverageResults@2
+            displayName: Publish code coverage
+            inputs:
+              summaryFileLocation: '$(Agent.TempDirectory)/**/*.coverage'
+              failIfCoverageEmpty: true
+
+          # For frameworks whose task does not publish results itself (JUnit example).
+          - task: PublishTestResults@2
+            displayName: Publish JUnit results (web UI tests)
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: '**/TEST-*.xml'
+              failTaskOnFailedTests: true
+
+  - stage: LoadTest
+    dependsOn: Test
+    jobs:
+      - job: Load
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          # Fails when a failureCriteria line in loadtest/checkout.yaml is met.
+          - task: AzureLoadTest@1
+            displayName: Checkout load test
+            inputs:
+              azureSubscription: 'pinecone-loadtest-sc'
+              loadTestConfigFile: 'loadtest/checkout.yaml'
+              loadTestResource: 'pinecone-load'
+              resourceGroup: 'rg-pinecone-test'
+
+          - publish: $(System.DefaultWorkingDirectory)/loadTest
+            artifact: loadTestResults

@@ -1,0 +1,10 @@
+# Azure Load Testing test configuration (AZ-401 episode 7, fictional test).
+version: v0.1
+testId: checkout-sale
+displayName: Checkout under sale traffic
+testPlan: checkout.jmx
+testType: JMX
+engineInstances: 2
+failureCriteria:
+  - avg(response_time_ms) > 300
+  - percentage(error) > 5

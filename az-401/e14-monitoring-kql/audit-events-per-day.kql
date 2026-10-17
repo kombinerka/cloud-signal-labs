@@ -1,0 +1,4 @@
+// Pinecone: how many audit events per day over the last 30 days?
+AzureDevOpsAuditing
+| where TimeGenerated > ago(30d)
+| summarize count() by bin(TimeGenerated, 1d)

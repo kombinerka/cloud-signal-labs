@@ -1,0 +1,59 @@
+# AZ-401 episode 8 - trigger rules and agent pools in Azure Pipelines.
+# This pipeline builds a GitHub repository (pinecone-gear/pricing-api) through the Azure Pipelines GitHub App,
+# so the YAML `pr:` trigger works. In Azure Repos, `pr:` is not supported: use a build validation branch policy.
+# Fictional names throughout.
+
+# CI trigger: pushes to main and release branches, ignoring docs-only changes.
+trigger:
+  batch: true            # wait for the running build, then build all new changes in one run
+  branches:
+    include:
+      - main
+      - releases/*
+  paths:
+    exclude:
+      - docs/*
+# trigger: none          # would turn CI off
+
+# PR trigger (GitHub and Bitbucket Cloud only).
+pr:
+  branches:
+    include:
+      - main
+  drafts: false
+
+# Scheduled run: cron in UTC; always: true runs even without code changes.
+schedules:
+  - cron: '0 2 * * *'
+    displayName: Nightly build
+    branches:
+      include:
+        - main
+    always: true
+
+# Pipeline completion trigger: run when pricing-ci completes on main.
+resources:
+  pipelines:
+    - pipeline: pricing
+      source: pricing-ci
+      trigger:
+        branches:
+          include:
+            - main
+
+jobs:
+  - job: Build
+    # Microsoft-hosted agent: fresh VM per job.
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - script: echo "Build $(Build.BuildNumber)"
+
+  - job: IntegrationTests
+    dependsOn: Build
+    # Self-hosted pool (for example a Managed DevOps Pool) that can reach private test resources.
+    pool:
+      name: pinecone-linux
+      demands: docker      # exists check: only agents with a "docker" capability
+    steps:
+      - script: echo "Run integration tests against the private test environment"

@@ -1,0 +1,107 @@
+# Pinecone shop: ordered, zero-downtime release (AZ-401 episode 10).
+# Database -> API -> Web. Each layer is a stage; dependsOn enforces the order.
+# The web app is deployed to the "staging" slot, then swapped into production.
+# Approvals/checks (e.g. Query Azure Monitor alerts) live on the environments.
+trigger:
+  branches:
+    include:
+      - main
+
+variables:
+  resourceGroup: rg-pinecone-prod
+  webApp: pinecone-shop-prod
+  apiApp: pinecone-api-prod
+  sqlServer: pinecone-sql-prod.database.windows.net
+  sqlDatabase: shopdb
+
+stages:
+  - stage: Database
+    jobs:
+      - deployment: Schema
+        pool:
+          vmImage: windows-latest
+        environment: production-db
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: SqlAzureDacpacDeployment@1
+                  displayName: Publish DACPAC
+                  inputs:
+                    azureSubscription: sc-pinecone-prod
+                    AuthenticationType: servicePrincipal
+                    ServerName: $(sqlServer)
+                    DatabaseName: $(sqlDatabase)
+                    deployType: DacpacTask
+                    DeploymentAction: Publish
+                    DacpacFile: $(Pipeline.Workspace)/db/shop.dacpac
+                    IpDetectionMethod: AutoDetect
+
+  - stage: Api
+    dependsOn: Database                 # never ship an API before its schema
+    jobs:
+      - deployment: Api
+        pool:
+          vmImage: ubuntu-latest
+        environment: production-api
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebAppContainer@1
+                  displayName: Deploy API container
+                  inputs:
+                    azureSubscription: sc-pinecone-prod
+                    appName: $(apiApp)
+                    containers: pineconeacr.azurecr.io/api:$(Build.SourceVersion)
+
+  - stage: Web
+    dependsOn: Api
+    jobs:
+      - deployment: Web
+        pool:
+          vmImage: ubuntu-latest
+        environment: production          # approval + Azure Monitor alerts check
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebApp@1
+                  displayName: Deploy to the staging slot
+                  inputs:
+                    azureSubscription: sc-pinecone-prod
+                    appType: webAppLinux
+                    appName: $(webApp)
+                    deployToSlotOrASE: true
+                    resourceGroupName: $(resourceGroup)
+                    slotName: staging
+                    package: $(Pipeline.Workspace)/web/*.zip
+            routeTraffic:
+              steps:
+                - task: AzureAppServiceManage@0
+                  displayName: Swap staging into production
+                  inputs:
+                    azureSubscription: sc-pinecone-prod
+                    Action: Swap Slots
+                    WebAppName: $(webApp)
+                    ResourceGroupName: $(resourceGroup)
+                    SourceSlot: staging
+                    SwapWithProduction: true
+            postRouteTraffic:
+              steps:
+                - script: curl --fail https://pinecone-shop-prod.azurewebsites.net/health
+                  displayName: Health check after the swap
+            on:
+              failure:
+                # Rollback = swap the same two slots again. Only correct if the swap
+                # already happened; in a real pipeline, check that before swapping back.
+                steps:
+                  - task: AzureAppServiceManage@0
+                    displayName: Roll back (swap the same slots again)
+                    inputs:
+                      azureSubscription: sc-pinecone-prod
+                      Action: Swap Slots
+                      WebAppName: $(webApp)
+                      ResourceGroupName: $(resourceGroup)
+                      SourceSlot: staging
+                      SwapWithProduction: true

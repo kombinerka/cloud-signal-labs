@@ -1,0 +1,21 @@
+{
+  "servers": {
+    "ado-remote-mcp": {
+      "type": "http",
+      "url": "https://mcp.dev.azure.com/pinecone",
+      "headers": {
+        "X-MCP-Toolsets": "wit,work",
+        "X-MCP-Readonly": "true"
+      }
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "X-MCP-Toolsets": "issues,pull_requests",
+        "X-MCP-Readonly": "true"
+      }
+    }
+  },
+  "inputs": []
+}

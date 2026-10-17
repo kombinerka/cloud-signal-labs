@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# AZ-401 Episode 5 - Pinecone's pre-commit hook: block commits that add likely secrets.
+# Install: copy to .git/hooks/pre-commit and make it executable (chmod +x),
+# or keep it in a tracked folder (e.g. .githooks/) and run: git config core.hooksPath .githooks
+# Client-side only: anyone can skip it with `git commit --no-verify`.
+# Enforce on the server too (Azure Repos branch policies, GitHub rulesets / push rules, secret scanning).
+
+# Only look at lines being ADDED in this commit (staged changes, no context lines).
+added=$(git diff --cached -U0 --no-color | grep '^+' | grep -v '^+++')
+
+if printf '%s\n' "$added" | grep -qiE 'password|secret|api[_-]?key|token'; then
+  echo "Possible secret in your staged changes. Commit blocked."
+  echo "Remove it, use a secret store (Key Vault / GitHub secrets), then commit again."
+  exit 1
+fi
+exit 0

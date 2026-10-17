@@ -1,0 +1,32 @@
+# Pinecone shop: sign in to Azure from GitHub Actions with OpenID Connect.
+# No client secret: azure/login exchanges the job's OIDC token with Entra ID.
+name: deploy-shop
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write   # lets the job request the OIDC token, nothing more
+  contents: read    # least privilege for GITHUB_TOKEN
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production   # subject: repo:pinecone-gear/shop:environment:production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Azure CLI
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az account show --output table

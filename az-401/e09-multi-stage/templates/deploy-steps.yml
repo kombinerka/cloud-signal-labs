@@ -1,0 +1,16 @@
+# Steps template (an "includes" template). Lives in the shared repo
+# pinecone-shop/pipeline-templates and is tagged, e.g. v1.2.0.
+parameters:
+  - name: appName
+    type: string
+  - name: serviceConnection
+    type: string
+
+steps:
+  - task: AzureWebApp@1
+    displayName: Deploy ${{ parameters.appName }}
+    inputs:
+      azureSubscription: ${{ parameters.serviceConnection }}
+      appType: webAppLinux
+      appName: ${{ parameters.appName }}
+      package: $(Pipeline.Workspace)/web

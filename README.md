@@ -30,6 +30,12 @@ practice set (4), static for printing and animated where an episode has a flow.
 practice set (2), plus the Python examples from the hands-on episodes: chat app, agent client, text and speech,
 vision and image generation, Content Understanding.
 
+## AZ-401 course: study index and code
+
+[az-401](az-401/): one cheat sheet per episode of the free AZ-401 Agentic DevOps course (15 episodes) and per
+practice set (3), plus the files the episodes show: Azure Pipelines and GitHub Actions YAML, Bicep and Terraform,
+KQL queries, Git hooks and scripts, MCP configuration. AZ-401 is in beta; validated, not deployed.
+
 ## Shorts (under a minute): one idea, one small folder
 
 | Folder | Short | Terraform | Bicep | Pipelines / other |

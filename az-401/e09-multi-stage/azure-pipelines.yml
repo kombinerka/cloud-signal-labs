@@ -1,0 +1,91 @@
+# Pinecone shop: multi-stage pipeline (AZ-401 episode 9).
+# Build -> Test (two jobs in parallel) -> Staging -> Production.
+# Approvals and checks are NOT in this file: they live on the
+# "staging" and "production" environments (Pipelines > Environments).
+trigger:
+  branches:
+    include:
+      - main
+
+resources:
+  repositories:
+    - repository: templates            # alias used after the @ sign
+      type: git                        # Azure Repos: name = <project>/<repo>
+      name: pinecone-shop/pipeline-templates
+      ref: refs/tags/v1.2.0            # pin a tag, not a moving branch
+
+variables:
+  - group: pinecone-shop-common        # variable group from Pipelines > Library
+  - name: buildConfiguration
+    value: Release
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: npm ci && npm run build
+            displayName: Build the shop
+          - publish: dist
+            artifact: web
+
+  - stage: Test                        # runs after Build (stages are sequential)
+    jobs:
+      - job: Unit                      # Unit and Integration run in parallel
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          matrix:
+            node20:
+              nodeVersion: '20.x'
+            node22:
+              nodeVersion: '22.x'
+          maxParallel: 2
+        steps:
+          - task: UseNode@1
+            inputs:
+              versionSource: spec
+              version: $(nodeVersion)
+          - script: npm ci && npm test
+            displayName: Unit tests
+      - job: Integration
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: npm ci && npm run test:integration
+            displayName: Integration tests
+
+  - stage: Staging
+    dependsOn: Test
+    jobs:
+      - deployment: DeployStaging
+        pool:
+          vmImage: ubuntu-latest
+        environment: staging
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: deploy-steps.yml@templates
+                  parameters:
+                    appName: pinecone-shop-staging
+                    serviceConnection: sc-pinecone-nonprod
+
+  - stage: Production
+    dependsOn: Staging
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployProduction
+        pool:
+          vmImage: ubuntu-latest
+        environment: production        # approval + branch control + business hours
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: deploy-steps.yml@templates
+                  parameters:
+                    appName: pinecone-shop-prod
+                    serviceConnection: sc-pinecone-prod

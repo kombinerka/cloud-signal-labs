@@ -1,0 +1,24 @@
+# Pinecone shop: GitHub Code Security for Azure DevOps (advanced setup).
+# Requires Advanced Security to be enabled on this Azure Repos repository.
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: AdvancedSecurity-Codeql-Init@1
+    inputs:
+      languages: "javascript"
+      # self-hosted agents: enableAutomaticCodeQLInstall: true
+
+  # Your build goes here (restore packages for better dependency results).
+  - script: |
+      npm ci
+      npm run build
+    displayName: Build
+
+  - task: AdvancedSecurity-Dependency-Scanning@1
+    displayName: Advanced Security Dependency Scanning
+
+  - task: AdvancedSecurity-Codeql-Analyze@1

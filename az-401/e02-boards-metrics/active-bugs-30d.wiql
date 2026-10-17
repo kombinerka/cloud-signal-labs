@@ -1,0 +1,12 @@
+SELECT
+    [System.Id],
+    [System.Title],
+    [System.State],
+    [System.CreatedDate]
+FROM workitems
+WHERE
+    [System.TeamProject] = @project
+    AND [System.WorkItemType] = 'Bug'
+    AND [System.State] = 'Active'
+    AND [System.CreatedDate] >= @Today - 30
+ORDER BY [System.CreatedDate] DESC

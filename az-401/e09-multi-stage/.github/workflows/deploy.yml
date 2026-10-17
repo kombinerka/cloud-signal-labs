@@ -1,0 +1,33 @@
+# Reusable workflow: called with "uses:" at the job level.
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      app-name:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write        # OpenID Connect sign-in to Azure (episode 12)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}   # protection rules apply here
+    steps:
+      - uses: actions/checkout@v6
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - run: npm ci && npm run build
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ inputs.app-name }}
+          package: dist

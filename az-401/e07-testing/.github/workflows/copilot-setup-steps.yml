@@ -1,0 +1,17 @@
+# Gives Copilot cloud agent the same tools as CI. Must be on the default branch;
+# the job MUST be called copilot-setup-steps.
+name: Copilot setup steps
+
+on: workflow_dispatch
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: pip install -r requirements.txt pytest pytest-cov

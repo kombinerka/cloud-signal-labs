@@ -1,0 +1,7 @@
+// Pinecone: who changed a service connection in the last 7 days?
+// Table filled by Azure DevOps audit streaming (Azure Monitor Logs target).
+AzureDevOpsAuditing
+| where TimeGenerated > ago(7d)
+| where OperationName == "Library.ServiceConnectionModified"
+| project TimeGenerated, ActorDisplayName, ProjectName, Details
+| sort by TimeGenerated desc

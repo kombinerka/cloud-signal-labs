@@ -1,0 +1,20 @@
+# Runs before Copilot cloud agent starts, so the Azure DevOps MCP server can sign in with Azure CLI.
+# AZURE_CLIENT_ID and AZURE_TENANT_ID are Agents secrets (an Entra app with a federated credential for GitHub OIDC).
+name: "Copilot Setup Steps"
+
+on: workflow_dispatch
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    environment: copilot
+    steps:
+      - name: Azure login
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true

@@ -1,0 +1,40 @@
+# Pipeline health: faster, cheaper CI (AZ-401 episode 11).
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '**.md']   # skip runs for doc-only changes
+  pull_request:
+    paths-ignore: ['docs/**', '**.md']
+
+concurrency:                              # a new push cancels the older run
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15                   # default is 360
+    strategy:
+      matrix:
+        shard: [1, 2, 3]                  # split tests across parallel jobs
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+      - run: npm ci
+      - run: npm test -- --shard=${{ matrix.shard }}/3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.shard }}
+          path: test-results/
+          retention-days: 7               # cannot exceed the repo/org limit

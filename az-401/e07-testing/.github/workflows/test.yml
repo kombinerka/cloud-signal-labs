@@ -1,0 +1,45 @@
+# AZ-401 episode 7 - tests, documented results and coverage in GitHub Actions (fictional repo pinecone-gear/trail-api).
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  code-quality: write   # needed only to upload coverage to GitHub Code Quality
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -r requirements.txt pytest pytest-cov
+
+      # A failing test fails this step, the job and the required status check.
+      - run: pytest --junitxml=results.xml --cov=. --cov-report=xml
+
+      # Document the results: artifact + job summary.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.python }}
+          path: results.xml
+      - run: echo "### Tests passed on Python ${{ matrix.python }}" >> $GITHUB_STEP_SUMMARY
+
+      # Coverage on the pull request (GitHub Code Quality; coverage is in public preview).
+      - name: Upload coverage report
+        if: matrix.python == '3.13' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: actions/upload-code-coverage@v1
+        with:
+          file: coverage.xml
+          language: Python
+          label: code-coverage/pytest

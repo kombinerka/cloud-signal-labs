@@ -1,0 +1,19 @@
+# Pinecone shop: deploy with a workload identity federation service connection.
+# The service connection "pinecone-prod-wif" (Azure Resource Manager,
+# App registration (automatic) + Workload identity federation) holds no secret.
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: AzureCLI@2
+    displayName: Show the identity the pipeline signed in with
+    inputs:
+      azureSubscription: pinecone-prod-wif   # only the connection name
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az account show --output table
+        az group show --name rg-pinecone-shop --output table

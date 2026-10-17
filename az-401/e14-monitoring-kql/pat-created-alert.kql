@@ -1,0 +1,6 @@
+// Pinecone: alert query for a log search alert rule (Custom log search).
+// Measure: Table rows · Operator: Greater than · Threshold: 0 · Frequency: 1 hour
+AzureDevOpsAuditing
+| where TimeGenerated > ago(1h)
+| where OperationName == "Token.PatCreateEvent"
+| project TimeGenerated, ActorDisplayName, ActorUPN

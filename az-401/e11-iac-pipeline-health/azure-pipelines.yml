@@ -1,0 +1,69 @@
+# Pinecone IaC pipeline (AZ-401 episode 11), Azure Pipelines.
+# PR: validate Bicep + Terraform and preview with what-if.
+# main: deploy Bicep to the "production" environment (approval set on the environment).
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - infra
+      - terraform
+
+pr:
+  branches:
+    include:
+      - main
+
+variables:
+  serviceConnection: sc-pinecone-prod     # fictional ARM service connection
+  resourceGroup: rg-pinecone-prod
+
+stages:
+  - stage: Validate
+    jobs:
+      - job: Bicep
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: AzureCLI@2
+            displayName: Bicep build + what-if
+            inputs:
+              azureSubscription: $(serviceConnection)
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az bicep build --file infra/main.bicep
+                az deployment group what-if --resource-group $(resourceGroup) --parameters infra/main.bicepparam
+      - job: Terraform                   # runs in parallel with the Bicep job
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          # Assumes the Terraform CLI is on the agent (installer step or your own image).
+          - script: |
+              terraform fmt -check
+              terraform init -backend=false
+              terraform validate
+            workingDirectory: terraform
+            displayName: Terraform fmt + validate
+
+  - stage: Deploy
+    dependsOn: Validate
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: Infra
+        pool:
+          vmImage: ubuntu-latest
+        environment: production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: Deploy main.bicepparam
+                  inputs:
+                    azureSubscription: $(serviceConnection)
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: az deployment group create --resource-group $(resourceGroup) --parameters infra/main.bicepparam --name shop-infra-$(Build.BuildId)

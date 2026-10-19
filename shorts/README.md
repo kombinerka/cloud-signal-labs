@@ -6,6 +6,8 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 |---|---|
 | N18 | [Tesla's "Flying" Roadster Demo: A Hop, Not a Flight](n18-teslaroadster.png) |
 | N19 | [GitHub Actions Workflow Lockfiles: Stop a Moved Tag from Running New Code](n19-actionslock.png) |
+| N20 | [Atlassian Data Center Flaw CVE-2026-21589: Patch Jira, Confluence and Bitbucket Now](n20-atlassianfileread.png) |
+| N21 | [Microsoft Maia 300 Explained: Microsoft's Own AI Chip for Inference](n21-maia300.png) |
 | S22 | [Load Balancers Explained: Why Adding a Server Isn't Enough](s22-loadbalancer.png) |
 | S23 | [Containers vs Virtual Machines: The Real Difference](s23-containervm.png) |
 | S24 | [Bandwidth vs Latency: Why a Faster Plan Doesn't Load Pages Faster](s24-latency.png) |
@@ -34,3 +36,5 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | T26 | [Terraform sensitive = true Doesn't Hide Secrets in State](t26-tfstatesecrets.png) |
 | T27 | [Azure Policy Audit vs Deny: Why the Resource Was Still Created](t27-policyaudit.png) |
 | W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) |
+| W2 | [Perseverance Breaks the Mars Driving Record: How Its Self-Driving Works](w2-perseverance.png) |
+| W7 | [How NASA Fixed Voyager 1 From 24 Billion km Away: Moving Code Around a Dead Chip](w7-voyagerpatch.png) |

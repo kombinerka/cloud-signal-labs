@@ -5,6 +5,7 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | Short | Cheat sheet |
 |---|---|
 | N18 | [Tesla's "Flying" Roadster Demo: A Hop, Not a Flight](n18-teslaroadster.png) |
+| N19 | [GitHub Actions Workflow Lockfiles: Stop a Moved Tag from Running New Code](n19-actionslock.png) |
 | S22 | [Load Balancers Explained: Why Adding a Server Isn't Enough](s22-loadbalancer.png) |
 | S23 | [Containers vs Virtual Machines: The Real Difference](s23-containervm.png) |
 | S24 | [Bandwidth vs Latency: Why a Faster Plan Doesn't Load Pages Faster](s24-latency.png) |

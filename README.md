@@ -19,7 +19,7 @@ CI**. Use the one your team runs.
 | [managed-identity](managed-identity/) | Azure Managed Identity Explained: How It Works & Why Access Is Denied | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
 | [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
 
-## Pilots: Find the Fault, Configuration Review, Step by Step, Cloud Math
+## Pilots: Find the Fault, Configuration Review, Step by Step, Cloud Math, Case File
 
 | Folder | Video |
 |---|---|
@@ -27,6 +27,7 @@ CI**. Use the one your team runs.
 | [config-review/01-deploy-to-prod](config-review/01-deploy-to-prod/) | Azure DevOps Production Deployments: 6-Point Security Review |
 | [azure-devops-wif](azure-devops-wif/) | Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret) |
 | [cloud-math/01-log-analytics-bill](cloud-math/01-log-analytics-bill/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
+| [case-file/01-azure-front-door](case-file/01-azure-front-door/) | Azure Front Door Outage Explained: How One Valid Config Change Went Global |
 
 ## AZ-900 course: study index
 

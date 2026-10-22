@@ -1,0 +1,28 @@
+# Uses the service connection "pinecone-prod" (workload identity federation, managed identity).
+# The pipeline stores no secret: each run gets a short-lived token from Microsoft Entra ID.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: deploy
+    jobs:
+      - deployment: deploy
+        environment: production # approvals and checks live on the environment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: AzureCLI@2
+                  displayName: Who am I?
+                  inputs:
+                    azureSubscription: pinecone-prod # the service connection name
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az account show --query "{subscription:name, signedInAs:user.name, type:user.type}" -o table
+                      az group show -n rg-pinecone-shop --query "{name:name, state:properties.provisioningState}" -o table

@@ -1,0 +1,23 @@
+// 1. Which table grew? Billable GB per day per table, last month (from Microsoft Learn "Analyze usage")
+Usage
+| where TimeGenerated > ago(32d)
+| where StartTime >= startofday(ago(31d)) and EndTime < startofday(now())
+| where IsBillable == true
+| summarize BillableDataGB = sum(Quantity) / 1000. by bin(StartTime, 1d), DataType
+| render columnchart
+
+// 2. Inside ContainerLogV2: which log level and which container?
+ContainerLogV2
+| where TimeGenerated > ago(14d)
+| summarize GB = sum(_BilledSize) / 1e9 by bin(TimeGenerated, 1d), LogLevel
+| render columnchart
+
+ContainerLogV2
+| where TimeGenerated > ago(1d)
+| summarize GB = sum(_BilledSize) / 1e9 by ContainerName, LogLevel
+| top 10 by GB
+
+// 3. Alert so this never takes a month to notice: billable GB in the last 24 h (log search alert, threshold > 30)
+Usage
+| where IsBillable
+| summarize DataGB = sum(Quantity / 1000)

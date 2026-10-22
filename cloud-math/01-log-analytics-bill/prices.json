@@ -1,0 +1,12 @@
+{
+  "_source": "Azure Retail Prices API (https://prices.azure.com/api/retail/prices), list prices, USD, West Europe, retrieved 2026-10-22. Your prices may differ (region, currency, agreement discounts). Re-run fetch_prices.py before you decide.",
+  "region": "westeurope",
+  "currency": "USD",
+  "analytics_ingestion_per_gb": 2.99,
+  "analytics_free_gb_per_month": 5,
+  "basic_ingestion_per_gb": 0.65,
+  "auxiliary_ingestion_per_gb": 0.07,
+  "query_scan_per_gb": 0.0065,
+  "retention_per_gb_month": 0.13,
+  "commitment_100gb_per_day": 252.84
+}

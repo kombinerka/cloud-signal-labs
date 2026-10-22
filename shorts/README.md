@@ -25,6 +25,7 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | S36 | [System Prompt vs User Prompt: Keep Your Chatbot On Topic (AI-901)](s36-systemprompt.png) |
 | S37 | [Vision Models vs Image Generation: Which One Do You Need? (AI-901)](s37-describedraw.png) |
 | S38 | [OCR vs Information Extraction: Reading Text vs Understanding It (AI-901)](s38-ocrvsextract.png) |
+| S39 | [Canary Release Explained: Why You Ship to 1% First](s39-canary.png) |
 | T18 | [Kubernetes OOMKilled vs CPU Throttling: Memory vs CPU Limits](t18-oomkilled.png) |
 | T19 | [Azure CLI Can't Find Your Resources? Check the Subscription](t19-wrongsub.png) |
 | T20 | [Expired Client Secret: Why Your Azure Pipeline Suddenly Fails](t20-secretexpiry.png) |
@@ -35,6 +36,8 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | T25 | [Azure Key Vault Soft Delete: Why the Vault Name Is Still Taken](t25-kvsoftdelete.png) |
 | T26 | [Terraform sensitive = true Doesn't Hide Secrets in State](t26-tfstatesecrets.png) |
 | T27 | [Azure Policy Audit vs Deny: Why the Resource Was Still Created](t27-policyaudit.png) |
+| T28 | [Azure NSG Allows Port 443, Still Timing Out? Check the Second NSG](t28-nsgtwice.png) |
+| T29 | [Terraform Rename Wants to Destroy Your Database? Use a moved Block](t29-forcereplace.png) |
 | W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) |
 | W2 | [Perseverance Breaks the Mars Driving Record: How Its Self-Driving Works](w2-perseverance.png) |
 | W7 | [How NASA Fixed Voyager 1 From 24 Billion km Away: Moving Code Around a Dead Chip](w7-voyagerpatch.png) |

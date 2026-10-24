@@ -23,11 +23,11 @@ CI**. Use the one your team runs.
 
 | Folder | Video |
 |---|---|
-| [find-the-fault/01-private-endpoint-dns](find-the-fault/01-private-endpoint-dns/) | Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP |
-| [config-review/01-deploy-to-prod](config-review/01-deploy-to-prod/) | Azure DevOps Production Deployments: 6-Point Security Review |
-| [azure-devops-wif](azure-devops-wif/) | Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret) |
-| [cloud-math/01-log-analytics-bill](cloud-math/01-log-analytics-bill/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
-| [case-file/01-azure-front-door](case-file/01-azure-front-door/) | Azure Front Door Outage Explained: How One Valid Config Change Went Global |
+| [find-the-fault/private-endpoint-dns-public-ip](find-the-fault/private-endpoint-dns-public-ip/) | Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP |
+| [config-review/azure-devops-who-can-deploy-to-prod](config-review/azure-devops-who-can-deploy-to-prod/) | [Azure DevOps Service Connections: Who Can Really Deploy to Production?](https://www.youtube.com/watch?v=fPMI2-chetY) |
+| [step-by-step/azure-pipelines-workload-identity-federation](step-by-step/azure-pipelines-workload-identity-federation/) | Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret) |
+| [cloud-math/log-analytics-bill-doubled](cloud-math/log-analytics-bill-doubled/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
+| [case-file/azure-front-door-outage-2025](case-file/azure-front-door-outage-2025/) | Azure Front Door Outage Explained: How One Valid Config Change Went Global |
 
 ## MD-102 course (Intune endpoint administrator)
 

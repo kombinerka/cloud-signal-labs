@@ -1,0 +1,9 @@
+// MD-102 Episode 12: Intune device compliance in Log Analytics (for an Azure Monitor workbook).
+// Prerequisite: Intune admin center > Reports > Diagnostic settings > send "DeviceComplianceOrg" to a Log Analytics workspace.
+// Table and columns: Azure Monitor Logs reference, IntuneDeviceComplianceOrg. Intune sends this data once every 24 hours
+// (it can take up to 48 hours to arrive), so look at the latest snapshot per device.
+IntuneDeviceComplianceOrg
+| where TimeGenerated > ago(2d)
+| summarize arg_max(TimeGenerated, *) by DeviceId
+| summarize Devices = count() by ComplianceState, OS
+| order by Devices desc

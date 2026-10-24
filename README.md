@@ -29,6 +29,10 @@ CI**. Use the one your team runs.
 | [cloud-math/01-log-analytics-bill](cloud-math/01-log-analytics-bill/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
 | [case-file/01-azure-front-door](case-file/01-azure-front-door/) | Azure Front Door Outage Explained: How One Valid Config Change Went Global |
 
+## MD-102 course (Intune endpoint administrator)
+
+Study index, cheat sheets and episode 12 code: [md-102](md-102/).
+
 ## AZ-900 course: study index
 
 [az-900](az-900/): one cheat sheet per episode of the free AZ-900 Azure Fundamentals course (15 episodes) and per

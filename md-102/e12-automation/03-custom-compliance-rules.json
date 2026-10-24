@@ -1,0 +1,32 @@
+{
+"Rules":[
+    {
+       "SettingName":"BiosVersion",
+       "Operator":"GreaterEquals",
+       "DataType":"Version",
+       "Operand":"2.3",
+       "MoreInfoUrl":"https://intranet.pinecone.example/kiosk-compliance",
+       "RemediationStrings":[
+          {
+             "Language":"en_US",
+             "Title":"BIOS version must be at least 2.3. Value discovered was {ActualValue}.",
+             "Description":"Ask the Pinecone service desk to update the BIOS of this kiosk."
+          }
+       ]
+    },
+    {
+       "SettingName":"TPMChipPresent",
+       "Operator":"IsEquals",
+       "DataType":"Boolean",
+       "Operand":true,
+       "MoreInfoUrl":"https://intranet.pinecone.example/kiosk-compliance",
+       "RemediationStrings":[
+          {
+             "Language":"en_US",
+             "Title":"A TPM chip must be present and enabled.",
+             "Description":"This kiosk has no usable TPM chip. Contact the Pinecone service desk."
+          }
+       ]
+    }
+ ]
+}

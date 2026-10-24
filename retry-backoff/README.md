@@ -1,5 +1,7 @@
 # Retries without a retry storm
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=sLKHz8MVRz0)**
+
 Companion code for the Cloud Signal Short **"Why Instant Retries Can Take Your Service Down"**.
 
 A service slows down, every client retries at once, and the extra load stops it from recovering. The fix:

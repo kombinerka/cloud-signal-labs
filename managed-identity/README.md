@@ -1,5 +1,7 @@
 # Managed identity: how it works, and why access is still denied
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=bIYmZL_cXJs)**
+
 Companion code for the Cloud Signal explainer **"Azure Managed Identity Explained: How It Works & Why Access Is
 Denied"**.
 

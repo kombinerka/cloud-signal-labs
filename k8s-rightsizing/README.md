@@ -1,5 +1,7 @@
 # Kubernetes bills follow requests
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=OIj7WA0Gs7I)**
+
 Companion code for the Cloud Signal Short **"Your Kubernetes Cluster Is Full. Your Nodes Are Idle. How?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

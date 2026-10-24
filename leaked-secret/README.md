@@ -1,5 +1,7 @@
 # Pushed a secret? Rotate first, then clean up
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=bYAjFN6QE98)**
+
 Companion code for the Cloud Signal Short **"Deleted the API Key From GitHub? It's Still There"**.
 
 Deleting the file in a new commit doesn't remove it: every earlier commit, every clone and every fork still has it.

@@ -1,5 +1,7 @@
 # Peering isn't transitive: direct links or a hub
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=o8WFypKD0Tg)**
+
 Companion code for the Cloud Signal Short **"Why A Can't Reach C in Azure (Peering Isn't Transitive)"**.
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

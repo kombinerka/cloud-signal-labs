@@ -1,5 +1,7 @@
 # RAG in 60 lines
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=SqvsSYR3Bzc)**
+
 Companion code for the Cloud Signal Short **"How Does AI Answer From Documents It Was Never Trained On?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

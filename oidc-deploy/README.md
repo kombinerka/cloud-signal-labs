@@ -1,5 +1,7 @@
 # Deploy to Azure without a stored secret (workload identity federation)
 
+▶ **Watch:** [Deploy to Azure Without a Stored Secret (and the 2-minute version)](https://www.youtube.com/watch?v=mUM-YbryARY) · [GitHub Actions to Azure with OIDC: Trust Is Not Permission](https://www.youtube.com/watch?v=UmDat0FVqBo)
+
 Companion code for the Cloud Signal videos **"GitHub Actions → Azure Without a Secret, in 2 Minutes"** and
 **"Deploy to Azure Without a Stored Secret (GitHub Actions OIDC)"**.
 

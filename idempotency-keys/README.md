@@ -1,5 +1,7 @@
 # Idempotency keys: retry without paying twice
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=CMvfyx-tDPc)**
+
 Companion code for the Cloud Signal Short **"You Clicked Pay Twice. Were You Charged Twice?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

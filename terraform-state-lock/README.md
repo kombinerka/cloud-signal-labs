@@ -1,5 +1,7 @@
 # Two applies at once: who wins?
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=uESHK8lOeEc)**
+
 Companion code for the Cloud Signal Short **"Two Pipelines Run terraform apply at Once. Who Wins?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

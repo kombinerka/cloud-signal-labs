@@ -1,5 +1,7 @@
 # Kubernetes keeps killing your slow app?
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=vXPnjguGRak)**
+
 Companion code for the Cloud Signal Short **"Kubernetes Keeps Killing Your Slow App? Check the Liveness Probe"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

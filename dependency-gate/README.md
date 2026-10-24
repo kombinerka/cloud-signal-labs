@@ -1,5 +1,7 @@
 # Check packages before they install
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=cyRlT-eMO3M)**
+
 Companion code for the Cloud Signal Short **"Your AI Agent Installed One Package. Could It Steal Your Secrets?"**
 
 ![Cheat sheet](cheatsheet.png)

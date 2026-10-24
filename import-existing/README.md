@@ -1,5 +1,7 @@
 # Bring a portal-built resource under code: Terraform or Bicep
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=UCDycfvAg9w)**
+
 Companion code for the Cloud Signal Short **"Built in the Azure Portal? Import It Into Terraform, Don't Rebuild It"**.
 
 Someone created a storage account by hand. You want it managed as code without deleting and recreating it.

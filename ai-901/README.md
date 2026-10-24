@@ -1,5 +1,7 @@
 # AI-901 study index
 
+▶ **[Watch the full course playlist on YouTube](https://www.youtube.com/playlist?list=PLbW6TDjXwkqw)**
+
 Companion page for the free **AI-901 Microsoft Azure AI Fundamentals** course on Cloud Signal (YouTube): one cheat
 sheet per episode for revision or printing, plus the Python code from the hands-on episodes (8–12).
 Skills measured as of 15 April 2026. Check Microsoft's
@@ -11,23 +13,23 @@ Animated versions (where an episode has a flow) loop in the browser; the static 
 
 | # | Video | Cheat sheet |
 |---|---|---|
-| 1 | AI-901 Explained: The 6 AI Workloads You Must Recognize | [static](e01-cheatsheet.png) |
-| 2 | Responsible AI: Microsoft's 6 Principles Explained | [static](e02-cheatsheet.png) · [animated](e02-cheatsheet-animated.png) |
-| 3 | How Generative AI Works: Tokens, Embeddings and Hallucinations | [static](e03-cheatsheet.png) · [animated](e03-cheatsheet-animated.png) |
-| 4 | Choose, Deploy and Tune an AI Model: Temperature, Top-P, Max Tokens | [static](e04-cheatsheet.png) |
-| 5 | Text Analysis and Speech AI Explained: Keywords, Entities, Sentiment, Speech | [static](e05-cheatsheet.png) · [animated](e05-cheatsheet-animated.png) |
-| 6 | Computer Vision, Image Generation and Information Extraction Explained | [static](e06-cheatsheet.png) · [animated](e06-cheatsheet-animated.png) |
+| 1 | [AI-901 Explained: The 6 AI Workloads You Must Recognize](https://www.youtube.com/watch?v=k3yuXCR3da4) | [static](e01-cheatsheet.png) |
+| 2 | [Responsible AI: Microsoft's 6 Principles Explained](https://www.youtube.com/watch?v=LxI9ZgH-wvs) | [static](e02-cheatsheet.png) · [animated](e02-cheatsheet-animated.png) |
+| 3 | [How Generative AI Works: Tokens, Embeddings and Hallucinations](https://www.youtube.com/watch?v=ImrCAjItlX0) | [static](e03-cheatsheet.png) · [animated](e03-cheatsheet-animated.png) |
+| 4 | [Choose, Deploy and Tune an AI Model: Temperature, Top-P, Max Tokens](https://www.youtube.com/watch?v=OdKRm3wNx1M) | [static](e04-cheatsheet.png) |
+| 5 | [Text Analysis and Speech AI Explained: Keywords, Entities, Sentiment, Speech](https://www.youtube.com/watch?v=Sny7sIoaxX8) | [static](e05-cheatsheet.png) · [animated](e05-cheatsheet-animated.png) |
+| 6 | [Computer Vision, Image Generation and Information Extraction Explained](https://www.youtube.com/watch?v=Mg9FXSQ4q6I) | [static](e06-cheatsheet.png) · [animated](e06-cheatsheet-animated.png) |
 
 ## Part 2: Building with Microsoft Foundry
 
 | # | Video | Cheat sheet | Code |
 |---|---|---|---|
-| 7 | Microsoft Foundry Tour: Deploy a Model, Playground, System vs User Prompts | [static](e07-cheatsheet.png) · [animated](e07-cheatsheet-animated.png) | (portal only) |
-| 8 | Build a Python Chat App with the Microsoft Foundry SDK | [static](e08-cheatsheet.png) · [animated](e08-cheatsheet-animated.png) | [e08-chat-app](e08-chat-app/) |
-| 9 | Build an AI Agent in Microsoft Foundry and Call It From Python | [static](e09-cheatsheet.png) | [e09-agent](e09-agent/) |
-| 10 | Text Analysis and Speech Apps With Azure Language, Azure Speech and Voice Live | [static](e10-cheatsheet.png) | [e10-text-and-speech](e10-text-and-speech/) |
-| 11 | Vision and Image Generation in Microsoft Foundry: Multimodal Prompts, GPT-Image and Sora | [static](e11-cheatsheet.png) | [e11-vision-and-images](e11-vision-and-images/) |
-| 12 | Azure Content Understanding Explained: Extract Data from Documents, Audio and Video | [static](e12-cheatsheet.png) · [animated](e12-cheatsheet-animated.png) | [e12-content-understanding](e12-content-understanding/) |
+| 7 | [Microsoft Foundry Tour: Deploy a Model, Playground, System vs User Prompts](https://www.youtube.com/watch?v=6C7ubJzuHfA) | [static](e07-cheatsheet.png) · [animated](e07-cheatsheet-animated.png) | (portal only) |
+| 8 | [Build a Python Chat App with the Microsoft Foundry SDK](https://www.youtube.com/watch?v=BTOS4kTDK4U) | [static](e08-cheatsheet.png) · [animated](e08-cheatsheet-animated.png) | [e08-chat-app](e08-chat-app/) |
+| 9 | [Build an AI Agent in Microsoft Foundry and Call It From Python](https://www.youtube.com/watch?v=55udTGwh8Q4) | [static](e09-cheatsheet.png) | [e09-agent](e09-agent/) |
+| 10 | [Text Analysis and Speech Apps With Azure Language, Azure Speech and Voice Live](https://www.youtube.com/watch?v=W3A7YRWqol0) | [static](e10-cheatsheet.png) | [e10-text-and-speech](e10-text-and-speech/) |
+| 11 | [Vision and Image Generation in Microsoft Foundry: Multimodal Prompts, GPT-Image and Sora](https://www.youtube.com/watch?v=4rROZw7pCCo) | [static](e11-cheatsheet.png) | [e11-vision-and-images](e11-vision-and-images/) |
+| 12 | [Azure Content Understanding Explained: Extract Data from Documents, Audio and Video](https://www.youtube.com/watch?v=5oZNVuooxt4) | [static](e12-cheatsheet.png) · [animated](e12-cheatsheet-animated.png) | [e12-content-understanding](e12-content-understanding/) |
 
 ## Practice sets
 
@@ -36,8 +38,8 @@ distinctions that decide the answers, not the questions themselves.
 
 | Set | Video | Cheat sheet |
 |---|---|---|
-| P1 | AI-901 Practice Questions: AI Concepts and Capabilities (15 Questions) | [static](p1-cheatsheet.png) |
-| P2 | AI-901 Practice Questions: Building with Microsoft Foundry (15 Questions) | [static](p2-cheatsheet.png) |
+| P1 | [AI-901 Practice Questions: AI Concepts and Capabilities (15 Questions)](https://www.youtube.com/watch?v=SjcWwtWxOrU) | [static](p1-cheatsheet.png) |
+| P2 | [AI-901 Practice Questions: Building with Microsoft Foundry (15 Questions)](https://www.youtube.com/watch?v=LWIH4v8cFIg) | [static](p2-cheatsheet.png) |
 
 ## The code
 

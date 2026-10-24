@@ -1,5 +1,7 @@
 # GPv1 storage retires: upgrade on your own schedule
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=fAm_VvGneWM)**
+
 Companion code for the Cloud Signal Short **"Azure Is Retiring GPv1 Storage This Month. Could Your Bill Change?"**
 
 ![Cheat sheet](cheatsheet.png)

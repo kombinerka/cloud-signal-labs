@@ -1,5 +1,7 @@
 # Taking over a messy Azure estate
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=6RxuwNeM-to)**
+
 Companion code for the Cloud Signal video **"You Inherited a Messy Azure Setup. Don't Start With Terraform."**
 
 ![Cheat sheet](cheatsheet.png)

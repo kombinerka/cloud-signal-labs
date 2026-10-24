@@ -1,5 +1,7 @@
 # Resource locks: why even the Owner can't delete it
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=4zQmKBkhLvw)**
+
 Companion code for the Cloud Signal Short **"Why Azure Won't Let Even the Owner Delete This (Resource Locks)"**.
 
 A lock sits on a subscription, a resource group or a resource, and everything below inherits it. It applies to

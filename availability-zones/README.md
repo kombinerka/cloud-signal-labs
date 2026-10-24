@@ -1,5 +1,7 @@
 # One datacenter fails. Does your app?
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=NI9L6OnpcGU)**
+
 Companion code for the Cloud Signal Short **"One Azure Datacenter Fails. Does Your App? (Availability Zones)"**.
 
 A region is an area with datacenters close together. Many regions are split into **availability zones**: separate

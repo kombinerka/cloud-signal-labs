@@ -13,17 +13,17 @@ CI**. Use the one your team runs.
 
 | Folder | Video | What you get |
 |---|---|---|
-| [azure-takeover](azure-takeover/) | You Inherited a Messy Azure Setup. Don't Start With Terraform. | discovery queries, "what is managed" comparison, safety basics, the Terraform export loop **and** the Bicep deployment-stack option, pipelines on all three platforms |
-| [landing-zone](landing-zone/) | Azure Landing Zones: The Foundation Before the Workload | management groups, subscription placement, inherited policies and a hub network, in Terraform and Bicep |
-| [oidc-deploy](oidc-deploy/) | Deploy to Azure Without a Stored Secret (and the 2-minute version) | identity + federated credential in Terraform, Bicep or CLI; deploy pipelines for GitHub, Azure DevOps, GitLab; troubleshooting table |
-| [managed-identity](managed-identity/) | Azure Managed Identity Explained: How It Works & Why Access Is Denied | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
-| [cicd-pipeline](cicd-pipeline/) | How CI/CD Actually Works — Without Naming a Single Tool | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
+| [azure-takeover](azure-takeover/) | [You Inherited a Messy Azure Setup. Don't Start With Terraform.](https://www.youtube.com/watch?v=6RxuwNeM-to) | discovery queries, "what is managed" comparison, safety basics, the Terraform export loop **and** the Bicep deployment-stack option, pipelines on all three platforms |
+| [landing-zone](landing-zone/) | [Azure Landing Zones: The Foundation Before the Workload](https://www.youtube.com/watch?v=F-qoUlwqo9Y) | management groups, subscription placement, inherited policies and a hub network, in Terraform and Bicep |
+| [oidc-deploy](oidc-deploy/) | [Deploy to Azure Without a Stored Secret (and the 2-minute version)](https://www.youtube.com/watch?v=mUM-YbryARY) | identity + federated credential in Terraform, Bicep or CLI; deploy pipelines for GitHub, Azure DevOps, GitLab; troubleshooting table |
+| [managed-identity](managed-identity/) | [Azure Managed Identity Explained: How It Works & Why Access Is Denied](https://www.youtube.com/watch?v=bIYmZL_cXJs) | a VM reading Key Vault with its identity, in Terraform and Bicep; SDK and raw-token scripts; a checkpoint script for "access denied" |
+| [cicd-pipeline](cicd-pipeline/) | [How CI/CD Actually Works — Without Naming a Single Tool](https://www.youtube.com/watch?v=xg1fkxMfcpY) | one build-once, promote-everywhere pipeline on GitHub, Azure DevOps and GitLab, with a tiny app to run it on |
 
 ## Pilots: Find the Fault, Configuration Review, Step by Step, Cloud Math, Case File
 
 | Folder | Video |
 |---|---|
-| [find-the-fault/private-endpoint-dns-public-ip](find-the-fault/private-endpoint-dns-public-ip/) | Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP |
+| [find-the-fault/private-endpoint-dns-public-ip](find-the-fault/private-endpoint-dns-public-ip/) | [Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP](https://www.youtube.com/watch?v=V8NzanEmzt8) |
 | [config-review/azure-devops-who-can-deploy-to-prod](config-review/azure-devops-who-can-deploy-to-prod/) | [Azure DevOps Service Connections: Who Can Really Deploy to Production?](https://www.youtube.com/watch?v=fPMI2-chetY) |
 | [step-by-step/azure-pipelines-workload-identity-federation](step-by-step/azure-pipelines-workload-identity-federation/) | Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret) |
 | [cloud-math/log-analytics-bill-doubled](cloud-math/log-analytics-bill-doubled/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
@@ -56,36 +56,36 @@ One-page cheat sheets for every Short: [shorts/](shorts/README.md).
 
 | Folder | Short | Terraform | Bicep | Pipelines / other |
 |---|---|:-:|:-:|---|
-| [agent-sandbox](agent-sandbox/) | Your AI Agent Has Terminal Access. Does It Have Your Whole Computer? | | | container + dev container sandbox |
-| [dependency-gate](dependency-gate/) | Your AI Agent Installed One Package. Could It Steal Your Secrets? | | | GitHub · Azure DevOps · GitLab, package manager settings |
-| [k8s-rightsizing](k8s-rightsizing/) | Your Kubernetes Cluster Is Full. Your Nodes Are Idle. How? | | | VPA, requests-vs-usage script |
-| [gpv1-migration](gpv1-migration/) | Azure Is Retiring GPv1 Storage This Month. Could Your Bill Change? | ✓ | ✓ | find + upgrade script |
-| [terraform-state-lock](terraform-state-lock/) | Two Pipelines Run terraform apply at Once. Who Wins? | ✓ | note | GitHub · Azure DevOps · GitLab |
-| [idempotency-keys](idempotency-keys/) | You Clicked Pay Twice. Were You Charged Twice? | | | Python |
-| [rag-basics](rag-basics/) | How Does AI Answer From Documents It Was Never Trained On? | | | Python |
-| [aks-azure-linux-3](aks-azure-linux-3/) | Your AKS Node Pool Might Stop Scaling on October 31 | ✓ | ✓ | find + migrate script |
-| [startup-probe](startup-probe/) | Kubernetes Keeps Killing Your Slow App? Check the Liveness Probe | | | Kubernetes YAML |
-| [private-endpoint-dns](private-endpoint-dns/) | Private Endpoint Added. Why Is Traffic Still Public? | ✓ | ✓ | DNS check script |
-| [rate-limit-429](rate-limit-429/) | 429 Too Many Requests: What Actually Happened? | | | Python |
-| [cache-invalidation](cache-invalidation/) | You Changed the Price. Why Does the Website Still Show the Old One? | | | Python |
-| [pin-dependencies](pin-dependencies/) | Pin What Your Pipeline Runs | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
-| [drift-detection](drift-detection/) | What Is Infrastructure Drift? | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
-| [import-existing](import-existing/) | Built in the Azure Portal? Import It, Don't Rebuild It | ✓ | ✓ | |
-| [tag-inheritance](tag-inheritance/) | Tagged the Resource Group? Your Costs Are Still Untagged | ✓ | ✓ | CLI |
-| [deployment-slots](deployment-slots/) | Blue-Green vs Canary Deployments | ✓ | ✓ | release scripts |
-| [availability-zones](availability-zones/) | One Azure Datacenter Fails. Does Your App? | ✓ | ✓ | |
-| [hub-spoke-peering](hub-spoke-peering/) | Why A Can't Reach C in Azure (Peering Isn't Transitive) | ✓ | ✓ | |
-| [archive-tier](archive-tier/) | Your Cheapest Backup Might Take 15 Hours to Restore | ✓ | ✓ | rehydrate script |
-| [resource-locks](resource-locks/) | Why Azure Won't Let Even the Owner Delete This | ✓ | ✓ | CLI |
-| [resource-group-lifecycle](resource-group-lifecycle/) | Delete One Azure Resource Group, Lose Everything In It | ✓ | ✓ | check script |
-| [vm-deallocate](vm-deallocate/) | Your Azure VM Is Off. Why Are You Still Paying? | ✓ | ✓ | find script |
-| [leaked-secret](leaked-secret/) | Deleted the API Key From GitHub? It's Still There | | | push protection on all three |
-| [retry-backoff](retry-backoff/) | Why Instant Retries Can Take Your Service Down | | | Python |
-| [artifact-attestations](artifact-attestations/) | What GitHub Artifact Attestations Actually Prove | | | GitHub attest + verify · GitLab cosign · Azure DevOps cosign + Key Vault |
+| [agent-sandbox](agent-sandbox/) | [Your AI Agent Has Terminal Access. Does It Have Your Whole Computer?](https://www.youtube.com/watch?v=k5Quz_hwQA4) | | | container + dev container sandbox |
+| [dependency-gate](dependency-gate/) | [Your AI Agent Installed One Package. Could It Steal Your Secrets?](https://www.youtube.com/watch?v=cyRlT-eMO3M) | | | GitHub · Azure DevOps · GitLab, package manager settings |
+| [k8s-rightsizing](k8s-rightsizing/) | [Your Kubernetes Cluster Is Full. Your Nodes Are Idle. How?](https://www.youtube.com/watch?v=OIj7WA0Gs7I) | | | VPA, requests-vs-usage script |
+| [gpv1-migration](gpv1-migration/) | [Azure Is Retiring GPv1 Storage This Month. Could Your Bill Change?](https://www.youtube.com/watch?v=fAm_VvGneWM) | ✓ | ✓ | find + upgrade script |
+| [terraform-state-lock](terraform-state-lock/) | [Two Pipelines Run terraform apply at Once. Who Wins?](https://www.youtube.com/watch?v=uESHK8lOeEc) | ✓ | note | GitHub · Azure DevOps · GitLab |
+| [idempotency-keys](idempotency-keys/) | [You Clicked Pay Twice. Were You Charged Twice?](https://www.youtube.com/watch?v=CMvfyx-tDPc) | | | Python |
+| [rag-basics](rag-basics/) | [How Does AI Answer From Documents It Was Never Trained On?](https://www.youtube.com/watch?v=SqvsSYR3Bzc) | | | Python |
+| [aks-azure-linux-3](aks-azure-linux-3/) | [Your AKS Node Pool Might Stop Scaling on October 31](https://www.youtube.com/watch?v=qnMGXbeo_l8) | ✓ | ✓ | find + migrate script |
+| [startup-probe](startup-probe/) | [Kubernetes Keeps Killing Your Slow App? Check the Liveness Probe](https://www.youtube.com/watch?v=vXPnjguGRak) | | | Kubernetes YAML |
+| [private-endpoint-dns](private-endpoint-dns/) | [Private Endpoint Added. Why Is Traffic Still Public?](https://www.youtube.com/watch?v=XnS99N9x74M) | ✓ | ✓ | DNS check script |
+| [rate-limit-429](rate-limit-429/) | [429 Too Many Requests: What Actually Happened?](https://www.youtube.com/watch?v=rXnmgnAIjpM) | | | Python |
+| [cache-invalidation](cache-invalidation/) | [You Changed the Price. Why Does the Website Still Show the Old One?](https://www.youtube.com/watch?v=glny871neLY) | | | Python |
+| [pin-dependencies](pin-dependencies/) | [Pin What Your Pipeline Runs](https://www.youtube.com/watch?v=hA9oGWA1OY0) | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
+| [drift-detection](drift-detection/) | [What Is Infrastructure Drift?](https://www.youtube.com/watch?v=tChBGuCGl94) | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
+| [import-existing](import-existing/) | [Built in the Azure Portal? Import It, Don't Rebuild It](https://www.youtube.com/watch?v=UCDycfvAg9w) | ✓ | ✓ | |
+| [tag-inheritance](tag-inheritance/) | [Tagged the Resource Group? Your Costs Are Still Untagged](https://www.youtube.com/watch?v=MTSvJp6qAtU) | ✓ | ✓ | CLI |
+| [deployment-slots](deployment-slots/) | [Blue-Green vs Canary Deployments](https://www.youtube.com/watch?v=NlzHxWWi6o8) | ✓ | ✓ | release scripts |
+| [availability-zones](availability-zones/) | [One Azure Datacenter Fails. Does Your App?](https://www.youtube.com/watch?v=NI9L6OnpcGU) | ✓ | ✓ | |
+| [hub-spoke-peering](hub-spoke-peering/) | [Why A Can't Reach C in Azure (Peering Isn't Transitive)](https://www.youtube.com/watch?v=o8WFypKD0Tg) | ✓ | ✓ | |
+| [archive-tier](archive-tier/) | [Your Cheapest Backup Might Take 15 Hours to Restore](https://www.youtube.com/watch?v=JnHOszFuLVg) | ✓ | ✓ | rehydrate script |
+| [resource-locks](resource-locks/) | [Why Azure Won't Let Even the Owner Delete This](https://www.youtube.com/watch?v=4zQmKBkhLvw) | ✓ | ✓ | CLI |
+| [resource-group-lifecycle](resource-group-lifecycle/) | [Delete One Azure Resource Group, Lose Everything In It](https://www.youtube.com/watch?v=aJUaM0dmsbg) | ✓ | ✓ | check script |
+| [vm-deallocate](vm-deallocate/) | [Your Azure VM Is Off. Why Are You Still Paying?](https://www.youtube.com/watch?v=-hLfODys7k8) | ✓ | ✓ | find script |
+| [leaked-secret](leaked-secret/) | [Deleted the API Key From GitHub? It's Still There](https://www.youtube.com/watch?v=bYAjFN6QE98) | | | push protection on all three |
+| [retry-backoff](retry-backoff/) | [Why Instant Retries Can Take Your Service Down](https://www.youtube.com/watch?v=sLKHz8MVRz0) | | | Python |
+| [artifact-attestations](artifact-attestations/) | [What GitHub Artifact Attestations Actually Prove](https://www.youtube.com/watch?v=w65f6ryLu6k) | | | GitHub attest + verify · GitLab cosign · Azure DevOps cosign + Key Vault |
 | [appgw-502-probe](appgw-502-probe/) | The App Works. Why Does Application Gateway Return 502? | ✓ | ✓ | local fixture, diagnose script |
-| [topology-spread](topology-spread/) | Kubernetes Pod Pending: When Two Spread Rules Disagree | | | Kubernetes YAML, kind repro |
-| [focus-reconciliation](focus-reconciliation/) | Your Cloud Usage Table Is Not Your Invoice | | | Python, SQL, sample FOCUS data |
-| [oidc-deploy](oidc-deploy/) | GitHub Actions to Azure with OIDC: Trust Is Not Permission | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
+| [topology-spread](topology-spread/) | [Kubernetes Pod Pending: When Two Spread Rules Disagree](https://www.youtube.com/watch?v=0lnpXR98gf4) | | | Kubernetes YAML, kind repro |
+| [focus-reconciliation](focus-reconciliation/) | [Your Cloud Usage Table Is Not Your Invoice](https://www.youtube.com/watch?v=SNh6ZJlMLF4) | | | Python, SQL, sample FOCUS data |
+| [oidc-deploy](oidc-deploy/) | [GitHub Actions to Azure with OIDC: Trust Is Not Permission](https://www.youtube.com/watch?v=UmDat0FVqBo) | ✓ | ✓ | GitHub · Azure DevOps · GitLab |
 
 ## Before you run anything
 

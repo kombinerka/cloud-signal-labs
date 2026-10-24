@@ -1,5 +1,7 @@
 # Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=V8NzanEmzt8)**
+
 Companion to the Cloud Signal video (Find the Fault #1). A private endpoint was added to Azure SQL, but the VM still
 resolves the public IP: the custom DNS server has no forwarder for `database.windows.net`.
 

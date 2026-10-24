@@ -1,5 +1,7 @@
 # AI agents need sandboxes
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=k5Quz_hwQA4)**
+
 Companion code for the Cloud Signal Short **"Your AI Agent Has Terminal Access. Does It Have Your Whole Computer?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

@@ -1,5 +1,7 @@
 # Your usage table is not your invoice (FOCUS 1.4)
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=SNh6ZJlMLF4)**
+
 Companion code for the Cloud Signal Short **"Your Cloud Usage Table Is Not Your Invoice"**.
 
 Usage data and the payable invoice are different ledgers. FOCUS 1.4 adds the **Invoice Detail** and **Billing

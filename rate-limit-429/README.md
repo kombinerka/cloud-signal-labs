@@ -1,5 +1,7 @@
 # 429 Too Many Requests and the token bucket
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=rXnmgnAIjpM)**
+
 Companion code for the Cloud Signal Short **"429 Too Many Requests: What Actually Happened?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

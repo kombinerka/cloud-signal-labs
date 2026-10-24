@@ -1,5 +1,7 @@
 # Stale cache: three ways to deal with it
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=glny871neLY)**
+
 Companion code for the Cloud Signal Short **"You Changed the Price. Why Does the Website Still Show the Old One?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

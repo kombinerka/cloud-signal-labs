@@ -1,5 +1,7 @@
 # Pod Pending: when two spread rules disagree
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=0lnpXR98gf4)**
+
 Companion code for the Cloud Signal Short **"Kubernetes Pod Pending: When Two Spread Rules Disagree"**.
 
 A Pod is Pending although the nodes have room. Two **hard** topology spread constraints can each allow a node, just

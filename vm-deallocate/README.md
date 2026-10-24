@@ -1,5 +1,7 @@
 # Stopped is not deallocated
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=-hLfODys7k8)**
+
 Companion code for the Cloud Signal Short **"Your Azure VM Is Off. Why Are You Still Paying?"**.
 
 | How the VM was stopped | State in Azure | Compute billed? |

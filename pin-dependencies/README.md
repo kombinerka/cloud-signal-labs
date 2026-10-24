@@ -1,5 +1,7 @@
 # Pin what your pipeline runs
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=hA9oGWA1OY0)**
+
 Companion code for the Cloud Signal Short **"Pin What Your Pipeline Runs: GitHub, GitLab and Azure DevOps"**.
 
 Your pipeline runs code you didn't write: actions, included templates, Marketplace tasks, container images.

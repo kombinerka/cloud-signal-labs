@@ -1,5 +1,7 @@
 # Catch infrastructure drift with a scheduled check
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=tChBGuCGl94)**
+
 Companion code for the Cloud Signal Short **"What Is Infrastructure Drift? (In 40 Seconds)"**.
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

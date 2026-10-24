@@ -1,5 +1,7 @@
 # What artifact attestations actually prove
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=w65f6ryLu6k)**
+
 Companion code for the Cloud Signal Short **"What GitHub Artifact Attestations Actually Prove"**.
 
 A green workflow doesn't prove that the file in front of you came from that workflow. An attestation adds signed

@@ -1,5 +1,7 @@
 # A landing zone you can read in ten minutes
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=F-qoUlwqo9Y)**
+
 Companion code for the Cloud Signal explainer on **Azure landing zones** (Orchard's prepared place to build).
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

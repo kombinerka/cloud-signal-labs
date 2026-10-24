@@ -1,5 +1,7 @@
 # Private endpoint = private DNS too
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=XnS99N9x74M)**
+
 Companion code for the Cloud Signal Short **"Private Endpoint Added. Why Is Traffic Still Public?"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

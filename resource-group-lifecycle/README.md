@@ -1,5 +1,7 @@
 # Delete one resource group, lose everything in it
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=aJUaM0dmsbg)**
+
 Companion code for the Cloud Signal Short **"Delete One Azure Resource Group, Lose Everything In It"**.
 
 A resource group is a container: deleting it deletes everything inside. Every resource lives in exactly one group

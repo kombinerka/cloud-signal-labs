@@ -1,5 +1,7 @@
 # Tag the resource group, see it on the bill
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=MTSvJp6qAtU)**
+
 Companion code for the Cloud Signal Short **"Tagged the Resource Group? Your Azure Costs Are Still Untagged"**.
 
 Tags on a subscription or resource group don't flow down to the resources inside. Every cost line belongs to a

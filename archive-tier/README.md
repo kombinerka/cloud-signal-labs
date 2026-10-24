@@ -1,5 +1,7 @@
 # Archive: the cheapest backup you can't read tonight
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=JnHOszFuLVg)**
+
 Companion code for the Cloud Signal Short **"Your Cheapest Backup Might Take 15 Hours to Restore"**.
 
 The archive tier is the cheapest place in Blob Storage, and it's **offline**: an archived blob can't be read or

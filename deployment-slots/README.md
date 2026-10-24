@@ -1,5 +1,7 @@
 # Blue-green and canary with App Service deployment slots
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=NlzHxWWi6o8)**
+
 Companion code for the Cloud Signal Short **"Blue-Green vs Canary Deployments in 40 Seconds"**.
 
 | | Blue-green | Canary |

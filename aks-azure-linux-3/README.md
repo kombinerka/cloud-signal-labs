@@ -1,5 +1,7 @@
 # AKS: move off Azure Linux 2.0 before October 31
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=qnMGXbeo_l8)**
+
 Companion code for the Cloud Signal Short **"Your AKS Node Pool Might Stop Scaling on October 31"**
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

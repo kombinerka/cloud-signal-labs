@@ -1,5 +1,7 @@
 # A CI/CD pipeline, the same on three platforms
 
+▶ **[Watch the video](https://www.youtube.com/watch?v=xg1fkxMfcpY)**
+
 Companion code for the Cloud Signal explainer **"How CI/CD Actually Works — Without Naming a Single Tool"**.
 
 <img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated)">

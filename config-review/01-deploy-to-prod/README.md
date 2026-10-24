@@ -1,6 +1,8 @@
 # Azure DevOps Production Deployments: 6-Point Security Review
 
-<img src="cheatsheet.png" width="540" alt="Cheat sheet: who can deploy to production? 6 settings to check">
+<img src="cheatsheet-animated.png" width="540" alt="Cheat sheet (animated): who can deploy to production? 6 settings to check">
+
+<sub>Static version: [cheatsheet.png](cheatsheet.png)</sub>
 
 Companion to the Cloud Signal video (Configuration Review #1): can a feature branch deploy to production in your
 Azure DevOps project? The six settings reviewed:
@@ -19,6 +21,6 @@ Azure DevOps project? The six settings reviewed:
 | `role-assignment.tf`, `versions.tf` | the same in Terraform |
 | `verify.sh` | Azure CLI checks for the role scope |
 | `VALIDATION.md` | how it was checked |
-| `cheatsheet.png` | the six-point checklist on one page |
+| `cheatsheet.png`, `cheatsheet-animated.png` | the six-point checklist on one page (static and animated) |
 
 The protections themselves are project settings (not code); the video shows where each one lives. Validated, **not deployed**.

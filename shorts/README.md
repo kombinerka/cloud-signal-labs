@@ -41,3 +41,7 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) | [▶ watch](https://www.youtube.com/watch?v=ATul-MfMdII) |
 | W2 | [Perseverance Breaks the Mars Driving Record: How Its Self-Driving Works](w2-perseverance.png) | [▶ watch](https://www.youtube.com/watch?v=TLcoBacpLqs) |
 | W7 | [How NASA Fixed Voyager 1 From 24 Billion km Away: Moving Code Around a Dead Chip](w7-voyagerpatch.png) | [▶ watch](https://www.youtube.com/watch?v=C0IAi5n8vHw) |
+| CF1 | [Azure Front Door Outage Explained: How One Valid Config Change Went Global](cf1-frontdoor.png) | coming soon |
+| CF1S | [Azure Front Door Outage: Why the Health Checks Said Green](cf1s-frontdoor.png) | coming soon |
+| CM1 | [Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced)](cm1-logbill.png) | coming soon |
+| SBS1 | [Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret)](sbs1-adowif.png) | coming soon |

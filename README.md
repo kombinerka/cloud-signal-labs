@@ -31,7 +31,7 @@ CI**. Use the one your team runs.
 
 ## MD-102 course (Intune endpoint administrator)
 
-Study index, cheat sheets and episode 12 code: [md-102](md-102/).
+▶ [Watch the full course playlist on YouTube](https://www.youtube.com/playlist?list=PLJ7iVS5Fohb4) · study index, cheat sheets and episode 12 code: [md-102](md-102/).
 
 ## AZ-900 course: study index
 

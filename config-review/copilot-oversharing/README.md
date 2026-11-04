@@ -10,7 +10,7 @@ walks through seven settings in a fictional company (Pinecone) and ends with a c
 
 | File | What it is |
 |---|---|
-| `check-hr-site.ps1` | lists who can open a SharePoint site (the "is it EEEU?" check from the video) |
+| `check-hr-site.ps1` | the stopgap from the video for one site: turns on restricted content discovery (keeps it out of Copilot and org-wide search) and, if you pass group IDs, restricted access control. **It changes the site**; the last line shows how to undo the first step |
 | `VALIDATION.md` | how it was checked |
 
-**Not run against any tenant and not syntax-checked yet** (see VALIDATION.md). Read it before you run it. Names are fictional (Pinecone).
+Syntax-checked (PowerShell 7, 0 parse errors), **not run against any tenant** (see VALIDATION.md). Read it before you run it. Names are fictional (Pinecone).

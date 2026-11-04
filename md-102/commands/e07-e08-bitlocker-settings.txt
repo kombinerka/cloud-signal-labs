@@ -1,0 +1,30 @@
+# MD-102 Episodes 7 and 8: BitLocker setting values for silent encryption and key rotation
+#
+# What it does: the exact setting names and values the episodes use in the endpoint security BitLocker profile.
+#   Intune admin center › Endpoint security › Disk encryption › Create policy › Platform: Windows
+#   › Profile: BitLocker › set the values below › Assignments (device group) › Review + create.
+# Silent encryption needs: Microsoft Entra joined or hybrid joined, TPM, native UEFI, Secure Boot, Windows RE.
+# Use the endpoint security profile, not the settings catalog (it lacks the TPM startup authentication
+# controls needed for reliable silent enablement).
+# Roles (least privilege, as listed on Learn):
+#   - Managing BitLocker / rotating keys: an Intune role with Remote tasks › Rotate BitLockerKeys = Yes
+#     (built-in: Help Desk Operator or Endpoint Security Manager, which the BitLocker article calls
+#     "Endpoint Security Administrator"; or your own custom role).
+#   - Viewing recovery keys: Microsoft Entra permission microsoft.directory/bitlockerKeys/key/read
+#     (Cloud Device Administrator or Helpdesk Administrator; avoid Global Administrator). Every reveal is audited.
+# Validated against Microsoft Learn ("Encrypt Windows devices with BitLocker in Intune"); not run against a tenant.
+
+# --- Silent encryption (episode 8) ---
+Require Device Encryption                         = Enabled
+Allow Warning For Other Disk Encryption           = Disabled
+Allow Standard User Encryption                    = Enabled    (when standard users sign in)
+
+# --- Prerequisites for the "BitLocker key rotation" device action (episode 7) ---
+Client-driven recovery password rotation          = Enable rotation on Microsoft Entra joined devices
+                                                    (or: Enable rotation on Microsoft Entra ID and hybrid joined devices)
+Save BitLocker recovery information to Microsoft Entra ID = Enabled
+
+# Where the key shows up: Devices › select the device › Monitor › Recovery keys
+# User self-service: My Account (myaccount.microsoft.com) › Devices › View BitLocker Keys, the Company Portal
+#   website, or the Company Portal app for iOS/macOS. Microsoft Entra device setting "Restrict users from
+#   recovering the BitLocker key(s) for their owned devices" turns it off (default: users can).

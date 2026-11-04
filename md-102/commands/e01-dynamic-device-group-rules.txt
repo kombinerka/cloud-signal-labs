@@ -1,0 +1,30 @@
+# MD-102 Episode 1: dynamic membership rules for device groups (Microsoft Entra ID)
+#
+# What it does: one rule per line; paste ONE rule into the rule builder's text box.
+#   Intune admin center › Groups › New group › Group type: Security › Membership type: Dynamic Device
+#   › Add dynamic query › Edit (rule syntax).
+# A dynamic group holds users or devices, never both. You can't add members by hand.
+# Role (least privilege): at least Groups Administrator to create or update the group.
+#   Dynamic membership groups need Microsoft Entra ID P1 in the tenant; device members need no license.
+# Validated against Microsoft Learn ("Rules for dynamic membership groups", "Create device groups for
+# Windows Autopilot"); not run against a tenant. Lines starting with # are comments, not rule syntax.
+
+# Every Windows device
+device.deviceOSType -eq "Windows"
+
+# Company-owned devices only (Entra value is "Company"; Intune shows the same thing as "Corporate")
+device.deviceOwnership -eq "Company"
+
+# Every Windows Autopilot device (anything registered with a ZTDId), as in the Autopilot docs
+(device.devicePhysicalIDs -any (_ -startsWith "[ZTDid]"))
+
+# Autopilot devices with a specific order ID (Learn's example value)
+device.devicePhysicalIds -any _ -eq "[OrderID]:179887111881"
+
+# Join type: AzureAD = Entra joined, ServerAD = hybrid joined, Workplace = registered
+device.deviceTrustType -eq "AzureAD"
+device.deviceTrustType -eq "ServerAD"
+device.deviceTrustType -eq "Workplace"
+
+# Combined: company-owned Windows devices that are Entra joined
+(device.deviceOSType -eq "Windows") -and (device.deviceOwnership -eq "Company") -and (device.deviceTrustType -eq "AzureAD")

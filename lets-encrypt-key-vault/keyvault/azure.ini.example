@@ -1,0 +1,12 @@
+# certbot-dns-azure plugin config (community plugin, not part of certbot).
+# Recommended package: certbot-dns-azure-modern (PyPI 2.8.1, Oct 2026), a maintained fork of certbot-dns-azure
+# (upstream 2.6.1 pins certbot<4.0). Same authenticator name (dns-azure), same options and config format.
+# Copy to azure.ini, chmod 400. No secret in this file: the plugin uses the Azure CLI sign-in of the job.
+#
+# CNAME delegation (write access limited to ONE TXT record):
+#   _acme-challenge.www.pinecone-gear.example  CNAME  pinecone-www.acme-challenges.example
+# Map the requested domain to that delegated TXT record (resource ID ending in /TXT/<record name>).
+# Create the TXT record once (Terraform/Bicep) with the placeholder value "-"; the plugin keeps it during cleanup.
+# Syntax per the plugin's DNS delegation docs page as reported to us; run once against Let's Encrypt staging to confirm.
+dns_azure_use_cli_credentials = true
+dns_azure_zone1 = www.pinecone-gear.example:/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-dns-challenge/providers/Microsoft.Network/dnszones/acme-challenges.example/TXT/pinecone-www

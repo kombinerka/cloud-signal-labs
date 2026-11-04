@@ -2,6 +2,8 @@
 
 Companion to the Cloud Signal video **"Azure Front Door Outage Explained: How One Valid Config Change Went Global"** (and the Short "Why the Health Checks Said Green").
 
+▶ **Watch:** [Azure Front Door Outage Explained: How One Valid Config Change Went Global](https://www.youtube.com/watch?v=dWVdfn5Dnpg) · [Why the Health Checks Said Green](https://www.youtube.com/watch?v=zpl22gfAPF0)
+
 <img src="cheatsheet.png" width="540" alt="Cheat sheet">
 
 ## Three lessons for your own pipelines

@@ -1,0 +1,23 @@
+// MD-102 Episode 7: device query (single device, KQL)
+//
+// What it does: ask one Windows device for its live state.
+//   Intune admin center › Devices › Windows › select the device › Monitor › Device query › paste ONE query › Run.
+// Requirements: Advanced Analytics (Intune Suite add-on, episode 11); corporate-owned Windows device that is
+//   Entra joined or hybrid joined; Windows Push Notification Services (WNS) must not be blocked.
+// Role (least privilege): a custom Intune role with Managed Devices/Query, plus read access to managed devices
+//   (for example Organization/Read, Managed devices/Read).
+// Supported table operators: count, distinct, join, order by, project, take, top, where.
+// Validated against Microsoft Learn ("Device query", "Intune Data Platform schema"); not run against a tenant.
+
+// The episode's query: is the drive encrypted? (columns from the EncryptableVolume table)
+EncryptableVolume
+| project WindowsDriveLetter, ProtectionStatus, EncryptionPercentage
+
+// Is the print spooler running? (WindowsService table)
+WindowsService
+| where ServiceName == "Spooler"
+| project ServiceName, DisplayName, State
+
+// BIOS details (BiosInfo table)
+BiosInfo
+| project Manufacturer, SerialNumber, ReleaseDateTime

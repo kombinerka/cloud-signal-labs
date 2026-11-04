@@ -1,0 +1,22 @@
+# MD-102 Episode 10: Office Deployment Tool (ODT) command line
+#
+# What it does: installs Microsoft 365 Apps with the Office Deployment Tool, the second of the three ways the
+# episode lists (Intune app type, ODT yourself, Microsoft 365 Apps admin center).
+# The ODT has two files: setup.exe and a configuration XML. Build the XML with the Office Customization Tool
+# at config.office.com (Microsoft's recommendation) instead of writing it by hand.
+# Rights: local administrator on the client computer. No Intune role or Graph scope is involved when you run it
+# by hand; to deploy it through Intune during Autopilot (ESP tracking), wrap setup.exe + the XML as a Win32 app
+# (Microsoft's recommendation) with the Application Manager role.
+# Validated against Microsoft Learn ("Overview of the Office Deployment Tool"); not run against a tenant.
+# Lines starting with # are comments.
+
+# Install (configure mode) with your configuration file:
+setup.exe /configure configuration.xml
+
+# Optional: download the installation files first (download mode):
+setup.exe /download configuration.xml
+
+# Win32 app wrapping (see e10-win32-package.ps1). Illustrative: Learn recommends the Win32 route during the ESP
+# but doesn't print these exact values. Put setup.exe and configuration.xml in one folder, then
+#   IntuneWinAppUtil -c .\m365 -s .\m365\setup.exe -o .\out
+#   Install command: setup.exe /configure configuration.xml

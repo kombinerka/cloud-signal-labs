@@ -25,9 +25,12 @@ CI**. Use the one your team runs.
 |---|---|
 | [find-the-fault/private-endpoint-dns-public-ip](find-the-fault/private-endpoint-dns-public-ip/) | [Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP](https://www.youtube.com/watch?v=V8NzanEmzt8) |
 | [config-review/azure-devops-who-can-deploy-to-prod](config-review/azure-devops-who-can-deploy-to-prod/) | [Azure DevOps Service Connections: Who Can Really Deploy to Production?](https://www.youtube.com/watch?v=fPMI2-chetY) |
-| [step-by-step/azure-pipelines-workload-identity-federation](step-by-step/azure-pipelines-workload-identity-federation/) | Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret) |
-| [cloud-math/log-analytics-bill-doubled](cloud-math/log-analytics-bill-doubled/) | Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced) |
-| [case-file/azure-front-door-outage-2025](case-file/azure-front-door-outage-2025/) | Azure Front Door Outage Explained: How One Valid Config Change Went Global |
+| [step-by-step/azure-pipelines-workload-identity-federation](step-by-step/azure-pipelines-workload-identity-federation/) | [Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret)](https://www.youtube.com/watch?v=nGgQ4hefhWw) |
+| [cloud-math/log-analytics-bill-doubled](cloud-math/log-analytics-bill-doubled/) | [Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced)](https://www.youtube.com/watch?v=K0qUxvu96yQ) |
+| [case-file/azure-front-door-outage-2025](case-file/azure-front-door-outage-2025/) | [Azure Front Door Outage Explained: How One Valid Config Change Went Global](https://www.youtube.com/watch?v=dWVdfn5Dnpg) |
+| [find-the-fault/federated-credential-case](find-the-fault/federated-credential-case/) | [Azure Login AADSTS7002138: Fix the Federated Credential Case Mismatch](https://www.youtube.com/watch?v=p1ojtSemk4A) |
+| [config-review/copilot-oversharing](config-review/copilot-oversharing/) | [Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On](https://www.youtube.com/watch?v=aNG4NHd_bGI) |
+| [lets-encrypt-key-vault](lets-encrypt-key-vault/) | [TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault](https://www.youtube.com/watch?v=1hBxR0JpedM) |
 
 ## MD-102 course (Intune endpoint administrator)
 

@@ -1,0 +1,32 @@
+# MD-102 Episode 6: assignment filter rules (Intune, managed devices)
+#
+# What it does: rules for an assignment filter. Create it under
+#   Intune admin center › Tenant administration › Assignment filters › Create › Managed devices,
+# paste ONE rule into the rule syntax editor, then add the filter (Include or Exclude) when you assign a
+# profile, app or policy to a group. Filters are evaluated when the device checks in; they only work inside
+# Intune (Conditional Access and licensing still need groups).
+# Role: Learn's filter article says to sign in as an Intune administrator; Intune RBAC custom roles can narrow
+#   this (least privilege).
+# Validated against Microsoft Learn ("Assignment filter properties and operators"); not run against a tenant.
+# Lines starting with # are comments.
+#
+# Note the differences from Entra dynamic group rules (episode 1):
+#   Intune ownership value is "Corporate" (Entra uses "Company"); "and" / "or" are allowed with or without the dash.
+
+# Pinecone's kiosk filter from the episode: device names that start with KIOSK
+(device.deviceName -startsWith "KIOSK")
+
+# Company-owned devices only (practice set 1, question 13)
+(device.deviceOwnership -eq "Corporate")
+
+# One manufacturer
+(device.manufacturer -eq "Microsoft")
+
+# A model family
+(device.model -startsWith "Surface Book")
+
+# OS version (operatingSystemVersion replaces the deprecated osVersion; version values are not quoted)
+(device.operatingSystemVersion -ge 10.0.22000.1000)
+
+# Combined
+(device.deviceOwnership -eq "Corporate") and (device.manufacturer -eq "Microsoft")

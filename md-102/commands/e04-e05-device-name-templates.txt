@@ -1,0 +1,20 @@
+# MD-102 Episodes 4 and 5: device name templates
+#
+# What it does: values for the "Apply device name template" field of a classic Windows Autopilot deployment
+# profile (episode 4) and for the Cloud PC naming template in a Windows 365 provisioning policy (episode 5).
+# Role (least privilege): Policy and Profile Manager or Intune Administrator (Learn's Autopilot prerequisites),
+#   or a custom Intune role with the Enrollment programs permissions; Cloud PC Administrator (Windows 365
+#   provisioning policy) or a custom Windows 365 role with Provisioning Policies/Create and /Assign.
+# Validated against Microsoft Learn ("Configure Windows Autopilot profiles", "Create a provisioning policy");
+# not run against a tenant. Lines starting with # are comments.
+
+# --- Windows Autopilot deployment profile (episode 4) ---
+# Rules: 15 characters or less; letters, numbers and hyphens; not all numbers.
+# %SERIAL% adds the serial number, %RAND:x% adds x random digits.
+# Needs the Microsoft Entra joined join type; hybrid join profiles only get a prefix.
+PC-AMS-%RAND:4%
+# result, for example: PC-AMS-0142
+
+# --- Windows 365 provisioning policy (episode 5) ---
+# Cloud PC naming template: 5 to 15 characters; %RAND:Y% is required, with Y of at least 5.
+PC-W365-%RAND:5%

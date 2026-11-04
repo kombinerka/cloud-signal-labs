@@ -1,0 +1,12 @@
+{
+  "issuerParameters": {"name": "Unknown"},
+  "keyProperties": {"exportable": true, "keyType": "RSA", "keySize": 2048, "reuseKey": false},
+  "secretProperties": {"contentType": "application/x-pkcs12"},
+  "x509CertificateProperties": {
+    "subject": "CN=*.pinecone-gear.example",
+    "subjectAlternativeNames": {"dnsNames": ["*.pinecone-gear.example"]}
+  },
+  "lifetimeActions": [
+    {"trigger": {"daysBeforeExpiry": 20}, "action": {"actionType": "EmailContacts"}}
+  ]
+}

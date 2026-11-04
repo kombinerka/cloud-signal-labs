@@ -1,0 +1,35 @@
+# .github/workflows/deploy.yml in pinecone-gear/shop (fictional). Validated as YAML, not run.
+# The environment name below ends up in the token subject:
+#   repo:pinecone-gear/shop:environment:Production
+# The federated credential's subject must match it exactly, case included.
+name: Deploy shop
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write # Require write permission to fetch an OIDC token.
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production # capital P: the credential must say Production too
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login (OIDC, no secret)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Who am I?
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az account show --query "{user: user.name, type: user.type}" -o table

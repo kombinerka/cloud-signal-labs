@@ -66,3 +66,8 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | FF2S | [Azure Login AADSTS7002138? The Error Tells You It's the Case](ff2s-capitalp.png) | [▶ watch](https://www.youtube.com/watch?v=RLyxIn8Wh-w) |
 | X4 | [MS-102 Retires November 30, 2026: Should You Take It or AB-650?](x4-ms102retires.png) | [▶ watch](https://www.youtube.com/watch?v=ifEfdYqvfT8) |
 | X4S | [MS-102 Retires November 30: Finish It, Go AB-650, or Renew?](x4s-ms102retires.png) | [▶ watch](https://www.youtube.com/watch?v=DBghqHdvIZU) |
+| T35 | [Someone Allowed Anonymous Blob Access in Azure Storage. Fixed in One Command](t35-publicblob.png) | [▶ watch](https://www.youtube.com/watch?v=NxfikAcpH2g) |
+| FF3 | [Azure Application Gateway 502 Bad Gateway, but Backend Is Healthy: Find the Fault](ff3-appgw502.png) | [▶ watch](https://www.youtube.com/watch?v=JhP8Jd7Emic) |
+| SBS2 | [Azure PIM Rollout: Remove Standing Owner Access Without Locking Out Your Team](sbs2-pimrollout.png) | [▶ watch](https://www.youtube.com/watch?v=_AmY-PugeCQ) |
+| CR3 | [Azure Front Door Classic Retires March 2027: 7 Checks Before You Migrate](cr3-frontdoor.png) | [▶ watch](https://www.youtube.com/watch?v=WJhcp_GCNvk) |
+| SBS3 | [Azure Policy as Code: Roll Out Deny Policies Safely (Audit First, Region by Region)](sbs3-policycode.png) | [▶ watch](https://www.youtube.com/watch?v=e_OJZIU8jRg) |

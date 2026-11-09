@@ -29,8 +29,8 @@ CI**. Use the one your team runs.
 | [cloud-math/log-analytics-bill-doubled](cloud-math/log-analytics-bill-doubled/) | [Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced)](https://www.youtube.com/watch?v=K0qUxvu96yQ) |
 | [case-file/azure-front-door-outage-2025](case-file/azure-front-door-outage-2025/) | [Azure Front Door Outage Explained: How One Valid Config Change Went Global](https://www.youtube.com/watch?v=dWVdfn5Dnpg) |
 | [find-the-fault/federated-credential-case](find-the-fault/federated-credential-case/) | [Azure Login AADSTS7002138: Fix the Federated Credential Case Mismatch](https://www.youtube.com/watch?v=p1ojtSemk4A) |
-| [config-review/copilot-oversharing](config-review/copilot-oversharing/) | [Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On](https://www.youtube.com/watch?v=aNG4NHd_bGI) |
-| [lets-encrypt-key-vault](lets-encrypt-key-vault/) | [TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault](https://www.youtube.com/watch?v=1hBxR0JpedM) |
+| [config-review/copilot-oversharing](config-review/copilot-oversharing/) | [Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On](https://www.youtube.com/watch?v=G-SQGW2AfdY) |
+| [lets-encrypt-key-vault](lets-encrypt-key-vault/) | [TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault](https://www.youtube.com/watch?v=YAODa55o2xw) |
 
 ## MD-102 course (Intune endpoint administrator)
 

@@ -1,6 +1,6 @@
 # TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault
 
-▶ **[Watch the video](https://www.youtube.com/watch?v=1hBxR0JpedM)** · Short: [Certbot Deploy Hook: Why a Renewed Certificate Still Expires](https://www.youtube.com/watch?v=GDnJnClKihA)
+▶ **[Watch the video](https://www.youtube.com/watch?v=YAODa55o2xw)** · Short: [Certbot Deploy Hook: Why a Renewed Certificate Still Expires](https://www.youtube.com/watch?v=k2L4nE_Qtdw)
 
 <img src="cheatsheet.png" width="540" alt="Cheat sheet: TLS certificates every 47 days, automate renewal">
 

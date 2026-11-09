@@ -28,9 +28,9 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | S39 | [Canary Release Explained: Why You Ship to 1% First](s39-canary.png) | [▶ watch](https://www.youtube.com/watch?v=BnyfdnaZiVE) |
 | S40 | [Privileged Identity Management (PIM) Explained: Admin Rights That Expire](s40-pimadmin.png) | [▶ watch](https://www.youtube.com/watch?v=kIFryWr325A) |
 | S41 | [Context Window Explained: Why AI Forgets the Start of a Long Chat](s41-context.png) | [▶ watch](https://www.youtube.com/watch?v=3fz4ic9EEsc) |
-| S42 | [Guest vs Member in Microsoft Entra ID: What a Guest Can See](s42-guestuser.png) | [▶ watch](https://www.youtube.com/watch?v=3xxa3w9kHmQ) |
-| S43 | [Attack Simulation Training Explained: Why Companies Phish Their Own Staff](s43-phishsim.png) | [▶ watch](https://www.youtube.com/watch?v=GCMERxLwD2U) |
-| S44 | [Sensitivity Labels vs Retention Labels in Microsoft Purview, Explained](s44-labels.png) | [▶ watch](https://www.youtube.com/watch?v=dvR9XDPFttg) |
+| S42 | [Guest vs Member in Microsoft Entra ID: What a Guest Can See](s42-guestuser.png) | [▶ watch](https://www.youtube.com/watch?v=Z9jgf0FPZrk) |
+| S43 | [Attack Simulation Training Explained: Why Companies Phish Their Own Staff](s43-phishsim.png) | [▶ watch](https://www.youtube.com/watch?v=2Vsmr0CMtLk) |
+| S44 | [Sensitivity Labels vs Retention Labels in Microsoft Purview, Explained](s44-labels.png) | [▶ watch](https://www.youtube.com/watch?v=3JJc0Wd669Q) |
 | T18 | [Kubernetes OOMKilled vs CPU Throttling: Memory vs CPU Limits](t18-oomkilled.png) | [▶ watch](https://www.youtube.com/watch?v=l4dQKoDlOTA) |
 | T19 | [Azure CLI Can't Find Your Resources? Check the Subscription](t19-wrongsub.png) | [▶ watch](https://www.youtube.com/watch?v=jwqChcdm018) |
 | T20 | [Expired Client Secret: Why Your Azure Pipeline Suddenly Fails](t20-secretexpiry.png) | [▶ watch](https://www.youtube.com/watch?v=yNX-Sc3t6LI) |
@@ -45,9 +45,9 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | T29 | [Terraform Rename Wants to Destroy Your Database? Use a moved Block](t29-forcereplace.png) | [▶ watch](https://www.youtube.com/watch?v=3PfEkRxqJ1s) |
 | T30 | [Azure Pipelines Condition Deployed After Failed Tests? Add succeeded()](t30-condition.png) | [▶ watch](https://www.youtube.com/watch?v=VXU_D9JcYbs) |
 | T31 | [Kubernetes Pods Still Run Old Code After a Push? Same Image Tag](t31-imagetag.png) | [▶ watch](https://www.youtube.com/watch?v=kcOQDPlbZxI) |
-| T32 | [Deleted a Resource From Code: Terraform Destroys It, Bicep Doesn't](t32-deletedcode.png) | [▶ watch](https://www.youtube.com/watch?v=a9PnJaV1q8s) |
-| T33 | [Leaked Azure SAS Token: How to Revoke It (Rotate the Key)](t33-sasleak.png) | [▶ watch](https://www.youtube.com/watch?v=rTRnHHjgBB4) |
-| T34 | [Deleted an Azure VM, Still Paying? Find Orphaned Managed Disks](t34-orphandisk.png) | [▶ watch](https://www.youtube.com/watch?v=My9C3_pLZqU) |
+| T32 | [Deleted a Resource From Code: Terraform Destroys It, Bicep Doesn't](t32-deletedcode.png) | not on the channel yet |
+| T33 | [Leaked Azure SAS Token: How to Revoke It (Rotate the Key)](t33-sasleak.png) | [▶ watch](https://www.youtube.com/watch?v=Luw3kTqDSJM) |
+| T34 | [Deleted an Azure VM, Still Paying? Find Orphaned Managed Disks](t34-orphandisk.png) | [▶ watch](https://www.youtube.com/watch?v=Uy8T8SXSvFs) |
 | W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) | [▶ watch](https://www.youtube.com/watch?v=ATul-MfMdII) |
 | W2 | [Perseverance Breaks the Mars Driving Record: How Its Self-Driving Works](w2-perseverance.png) | [▶ watch](https://www.youtube.com/watch?v=TLcoBacpLqs) |
 | W7 | [How NASA Fixed Voyager 1 From 24 Billion km Away: Moving Code Around a Dead Chip](w7-voyagerpatch.png) | [▶ watch](https://www.youtube.com/watch?v=C0IAi5n8vHw) |
@@ -55,12 +55,12 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | CF1S | [Azure Front Door Outage: Why the Health Checks Said Green](cf1s-frontdoor.png) | [▶ watch](https://www.youtube.com/watch?v=zpl22gfAPF0) |
 | CM1 | [Log Analytics Cost: Why Our Azure Logging Bill Doubled (and 4 Fixes, Priced)](cm1-logbill.png) | [▶ watch](https://www.youtube.com/watch?v=K0qUxvu96yQ) |
 | SBS1 | [Azure Pipelines Workload Identity Federation Step by Step (Managed Identity, No Secret)](sbs1-adowif.png) | [▶ watch](https://www.youtube.com/watch?v=nGgQ4hefhWw) |
-| CERT1 | [TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault](cert1-acme.png) | [▶ watch](https://www.youtube.com/watch?v=1hBxR0JpedM) |
-| CERT1S | [Certbot Deploy Hook: Why a Renewed Certificate Still Expires](cert1s-acme.png) | [▶ watch](https://www.youtube.com/watch?v=GDnJnClKihA) |
+| CERT1 | [TLS Certificates Every 47 Days: Auto-Renew Let's Encrypt into Azure Key Vault](cert1-acme.png) | [▶ watch](https://www.youtube.com/watch?v=YAODa55o2xw) |
+| CERT1S | [Certbot Deploy Hook: Why a Renewed Certificate Still Expires](cert1s-acme.png) | [▶ watch](https://www.youtube.com/watch?v=k2L4nE_Qtdw) |
 | CR1 | [Azure DevOps Production Deployments: 6-Point Security Review](cr1-deployprod.png) | [▶ watch](https://www.youtube.com/watch?v=fPMI2-chetY) |
 | CR1S | [Azure DevOps: The Checkbox That Opens Production to Every Pipeline](cr1s-deployprod.png) | [▶ watch](https://www.youtube.com/watch?v=ywsW8vyZUWA) |
-| CR2 | [Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On](cr2-oversharing.png) | [▶ watch](https://www.youtube.com/watch?v=aNG4NHd_bGI) |
-| CR2S | [Microsoft 365 Copilot Oversharing: The HR Site Everyone Can Open](cr2s-oversharing.png) | [▶ watch](https://www.youtube.com/watch?v=MzZoILfiwWI) |
+| CR2 | [Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On](cr2-oversharing.png) | [▶ watch](https://www.youtube.com/watch?v=G-SQGW2AfdY) |
+| CR2S | [Microsoft 365 Copilot Oversharing: The HR Site Everyone Can Open](cr2s-oversharing.png) | [▶ watch](https://www.youtube.com/watch?v=bzKpz8Uog0c) |
 | FF1 | [Azure Private Endpoint DNS Troubleshooting: Why the VM Gets the Public IP](ff1-privatedns.png) | [▶ watch](https://www.youtube.com/watch?v=V8NzanEmzt8) |
 | FF1S | [Private Endpoint Resolves to a Public IP? Run These Two nslookups](ff1s-privatedns.png) | [▶ watch](https://www.youtube.com/watch?v=WMNcuN4slwA) |
 | FF2 | [Azure Login AADSTS7002138: Fix the Federated Credential Case Mismatch](ff2-capitalp.png) | [▶ watch](https://www.youtube.com/watch?v=p1ojtSemk4A) |

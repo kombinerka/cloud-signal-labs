@@ -1,6 +1,6 @@
 # Microsoft 365 Copilot Oversharing: 7 Checks Before You Turn It On
 
-▶ **[Watch the video](https://www.youtube.com/watch?v=aNG4NHd_bGI)** · Short: [The HR Site Everyone Can Open](https://www.youtube.com/watch?v=MzZoILfiwWI)
+▶ **[Watch the video](https://www.youtube.com/watch?v=G-SQGW2AfdY)** · Short: [The HR Site Everyone Can Open](https://www.youtube.com/watch?v=bzKpz8Uog0c)
 
 <img src="cheatsheet.png" width="540" alt="Cheat sheet: 7 checks before you turn on Microsoft 365 Copilot">
 

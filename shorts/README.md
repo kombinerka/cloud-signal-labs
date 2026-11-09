@@ -45,7 +45,6 @@ One-page summary for each Cloud Signal Short (S = simple, T = technical, N = new
 | T29 | [Terraform Rename Wants to Destroy Your Database? Use a moved Block](t29-forcereplace.png) | [▶ watch](https://www.youtube.com/watch?v=3PfEkRxqJ1s) |
 | T30 | [Azure Pipelines Condition Deployed After Failed Tests? Add succeeded()](t30-condition.png) | [▶ watch](https://www.youtube.com/watch?v=VXU_D9JcYbs) |
 | T31 | [Kubernetes Pods Still Run Old Code After a Push? Same Image Tag](t31-imagetag.png) | [▶ watch](https://www.youtube.com/watch?v=kcOQDPlbZxI) |
-| T32 | [Deleted a Resource From Code: Terraform Destroys It, Bicep Doesn't](t32-deletedcode.png) | not on the channel yet |
 | T33 | [Leaked Azure SAS Token: How to Revoke It (Rotate the Key)](t33-sasleak.png) | [▶ watch](https://www.youtube.com/watch?v=Luw3kTqDSJM) |
 | T34 | [Deleted an Azure VM, Still Paying? Find Orphaned Managed Disks](t34-orphandisk.png) | [▶ watch](https://www.youtube.com/watch?v=Uy8T8SXSvFs) |
 | W1 | [The Uncensored Library: Censored News Hidden Inside Minecraft](w1-uncensoredlibrary.png) | [▶ watch](https://www.youtube.com/watch?v=ATul-MfMdII) |
